@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "733749917096",
+    "firebase_url": "https://flocknsave-62b20.firebaseio.com",
+    "project_id": "flocknsave-62b20",
+    "storage_bucket": "flocknsave-62b20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733749917096:android:db49a3eceb25bf55e6999d",
+        "android_client_info": {
+          "package_name": "com.nailesh.flocknsave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733749917096-71kteplib3raldh0ksih6qug9hl291n3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nailesh.flocknsave",
+            "certificate_hash": "3c911e565c5d91a2fb8446bb48938c7e89964203"
+          }
+        },
+        {
+          "client_id": "733749917096-75gi6d7gknm9dhpqf224q7r126ig2li5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgabyJtmZZFOTt-UpzFCcU0UzN67pDKw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733749917096-75gi6d7gknm9dhpqf224q7r126ig2li5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
