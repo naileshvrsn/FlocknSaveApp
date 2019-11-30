@@ -1,3 +1,3 @@
 # FlocknSaveApp
 
-# MIT students final year project
+MIT students final year project
