@@ -12,7 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_class.SearchActivity"></activity>
+        <activity android:name=".activity_class.RegisterActivity"
+            android:label="Register"></activity>
+        <activity
+            android:name=".activity_class.LoginActivity"
+            android:label="Login" />
+        <activity
+            android:name=".activity_class.SearchActivity"
+            android:label="Search Product" />
         <activity
             android:name=".activity_class.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
