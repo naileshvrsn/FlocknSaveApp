@@ -1,17 +1,17 @@
 package com.nailesh.flocknsave.activity_class;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.Group;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-     String person = "admin";
+     String person ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
-        if(!person.isEmpty()){
-            menu.findItem(R.id.nav_login).setVisible(false);
-            menu.findItem(R.id.nav_register).setVisible(false);
-            menu.findItem(R.id.nav_logout).setVisible(true);
-        }
-
         switch (person){
             case "customer":
                 menu.setGroupVisible(R.id.nav_customer,true);
@@ -80,8 +74,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case "admin":
                 menu.setGroupVisible(R.id.nav_admin,true);
                 break;
+            default:
+                menu.setGroupVisible(R.id.nav_customer,false);
+                menu.setGroupVisible(R.id.nav_supplier,false);
+                menu.setGroupVisible(R.id.nav_admin,false);
+
+
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.header_menu,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_menu_login:
+                Intent intent = new Intent(this,LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -106,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_search_products:
                 Intent intent = new Intent(this,SearchActivity.class);
                 startActivity(intent);
+                this.finish();
                 break;
         }
 
