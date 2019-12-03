@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#21c465</color>
+    <color name="colorPrimaryDark">#19954C</color>
+    <color name="colorAccent">#ffdb21</color>
+
+    <color name="flocknsaveDarkBlue">#34687A</color>
+    <color name="flocknsaveGreen">#19954C</color>
 </resources>
