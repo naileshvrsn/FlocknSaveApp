@@ -12,6 +12,8 @@ import com.nailesh.flocknsave.R;
 
 public class SearchActivity extends AppCompatActivity {
 
+    String person="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,11 @@ public class SearchActivity extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.header_menu,menu);
+
+        if(!person.isEmpty()){
+            menu.findItem(R.id.nav_menu_login).setVisible(false);
+            menu.findItem(R.id.nav_menu_logout).setVisible(true);
+        }
 
         return true;
     }

@@ -9,20 +9,24 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
-
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.nailesh.flocknsave.fragment.HomeFragment;
 import com.nailesh.flocknsave.fragment.HowItWorksFragment;
 import com.nailesh.flocknsave.fragment.ScoopFragment;
 import com.nailesh.flocknsave.R;
+import com.nailesh.flocknsave.model.Person;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,14 +35,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     Menu menu;
 
-
-
-     String person ="";
+    String persontype ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,21 +69,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
-        switch (person){
-            case "customer":
+        switch (persontype){
+            case "Customer":
                 menu.setGroupVisible(R.id.nav_customer,true);
                 break;
-            case "supplier":
+            case "Supplier":
                 menu.setGroupVisible(R.id.nav_supplier,true);
                 break;
-            case "admin":
+            case "Admin":
                 menu.setGroupVisible(R.id.nav_admin,true);
                 break;
             default:
                 menu.setGroupVisible(R.id.nav_customer,false);
                 menu.setGroupVisible(R.id.nav_supplier,false);
                 menu.setGroupVisible(R.id.nav_admin,false);
-
 
         }
 
@@ -87,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.header_menu,menu);
+
+        if(!persontype.isEmpty()){
+            menu.findItem(R.id.nav_menu_login).setVisible(false);
+            menu.findItem(R.id.nav_menu_logout).setVisible(true);
+        }
 
         return true;
     }

@@ -5,4 +5,40 @@
 
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string-array name="cities_register">
+        <item>Select Region</item>
+        <item>Auckland</item>
+        <item>Bay of Plenty</item>
+        <item>Hawkes Bay</item>
+        <item>Manawatu/Whanganui</item>
+        <item>Northland</item>
+        <item>Taranaki</item>
+        <item>Waikato</item>
+        <item>Wellington</item>
+        <item>Canterbury</item>
+        <item>Marlborough</item>
+        <item>Otago</item>
+        <item>Southland</item>
+        <item>Tasman / Nelson</item>
+        <item>West Coast</item>
+    </string-array>
+
+
+    <string-array name="industry">
+        <item>Select Industry</item>
+        <item>Construction</item>
+        <item>Fishing</item>
+        <item>Forestry</item>
+        <item>Horticulture</item>
+        <item>Hospitality</item>
+        <item>Infrastructure</item>
+        <item>Agriculture</item>
+    </string-array>
+
+    <string-array name="person_type">
+        <item>Customer</item>
+        <item>Supplier</item>
+    </string-array>
+
+
 </resources>
