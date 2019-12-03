@@ -1,8 +1,15 @@
 <resources>
-    <string name="app_name">FlocknSave</string>
+    <string name="app_name">Flock n Save</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
 
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="buyer_text_home">You can now quickly and easily amplify your purchasing
+        power from multiple suppliers. No ringing around, haggling, emails, searching or
+        comparing apples with lemons.</string>
+
+    <string name="supplier_text_home">You can now easily and economically access incremental
+        sales opportunities.</string>
 
 </resources>

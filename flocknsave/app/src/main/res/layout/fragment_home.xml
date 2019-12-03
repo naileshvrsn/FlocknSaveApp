@@ -1,16 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
-    <TextView
+    android:background="@drawable/background"
+    android:padding="15dp"
+    android:orientation="vertical">
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:layout_marginTop="24dp"
-        android:textSize="36sp"
-        android:gravity="center_horizontal"
-        />
+        android:id="@+id/homeScrollView">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="100dp">
+
+            <ImageView
+                android:id="@+id/homeLogo"
+                style="@style/flocknsaveLogo"
+                android:src="@drawable/logo_flocknsave" />
+
+            <TextView
+                style="@style/homeText1"
+                android:text="Flock n Save" />
+
+            <TextView
+                style="@style/homeText2"
+                android:text="Time and Money"/>
+
+            <TextView
+                style="@style/homeText3"
+                android:text="when Buying or Selling"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp">
+                    <ImageView
+                        android:id="@+id/fencingIconHome"
+                        style="@style/homeIconsStyle"
+                        android:src="@drawable/icon_fencing"
+                        android:layout_marginRight="5dp"/>
+                    <ImageView
+                        android:id="@+id/waterControlIconHome"
+                        android:src="@drawable/icon_watercontrol"
+                        style="@style/homeIconsStyle"
+                        android:layout_marginLeft="5dp"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/homeLabelsStyle"
+                        android:layout_marginRight="10dp"
+                        android:text="Fencing" />
+                    <TextView
+                        style="@style/homeLabelsStyle"
+                        android:text="Water Control" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp">
+                    <ImageView
+                        android:id="@+id/animalHealthIconHome"
+                        style="@style/homeIconsStyle"
+                        android:src="@drawable/icon_cow"
+                        android:layout_marginRight="10dp"/>
+                    <ImageView
+                        android:id="@+id/agriChemicalsIconHome"
+                        android:src="@drawable/icon_agrichemicals"
+                        style="@style/homeIconsStyle"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/homeLabelsStyle"
+                        android:layout_marginRight="10dp"
+                        android:text="Animal Health" />
+                    <TextView
+                        style="@style/homeLabelsStyle"
+                        android:text="Agri Chemicals" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp">
+                    <ImageView
+                        android:id="@+id/contractingIconHome"
+                        style="@style/homeIconsStyle"
+                        android:src="@drawable/icon_contracting"
+                        android:layout_marginRight="10dp"/>
+                    <ImageView
+                        android:id="@+id/fuelLubricantsIconHome"
+                        android:src="@drawable/icon_fuellubricants"
+                        style="@style/homeIconsStyle"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/homeLabelsStyle"
+                        android:layout_marginRight="10dp"
+                        android:text="Contracting" />
+                    <TextView
+                        style="@style/homeLabelsStyle"
+                        android:text="Fuel &amp; Lubricants" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp">
+                    <ImageView
+                        android:id="@+id/pestControlIconHome"
+                        style="@style/homeIconsStyle"
+                        android:src="@drawable/icon_pestcontrol"
+                        android:layout_marginRight="10dp"/>
+                    <ImageView
+                        android:id="@+id/electricityIconHome"
+                        android:src="@drawable/icon_electricity"
+                        style="@style/homeIconsStyle"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/homeLabelsStyle"
+                        android:layout_marginRight="10dp"
+                        android:text="Pest Control" />
+                    <TextView
+                        style="@style/homeLabelsStyle"
+                        android:text="Electricity" />
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                style="@style/homeTextBuyerHeading"
+                android:textColor="@color/flocknsaveGreen"
+                android:text="As a buyer"/>
+
+            <TextView
+                style="@style/homeTextBuyer"
+                android:text="@string/buyer_text_home"/>
+
+            <TextView
+                style="@style/homeTextBuyerHeading"
+                android:textColor="@color/flocknsaveDarkBlue"
+                android:text="As a supplier"/>
+
+            <TextView
+                style="@style/homeTextBuyer"
+                android:text="@string/supplier_text_home"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
