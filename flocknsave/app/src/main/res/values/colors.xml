@@ -2,8 +2,11 @@
 <resources>
     <color name="colorPrimary">#21c465</color>
     <color name="colorPrimaryDark">#19954C</color>
-    <color name="colorAccent">#ffdb21</color>
+    <color name="colorAccent">#34687A</color>
 
     <color name="flocknsaveDarkBlue">#34687A</color>
     <color name="flocknsaveGreen">#19954C</color>
+
+    <color name="loginText">#3a3a3a</color>
+    <color name="lightCyanBlue">#edf5f7</color>
 </resources>

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         switch (persontype){
-            case "Customer":
+            case "Buyer":
                 menu.setGroupVisible(R.id.nav_customer,true);
                 break;
             case "Supplier":

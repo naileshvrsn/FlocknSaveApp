@@ -87,4 +87,36 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <!-- Login & Register Page styles. -->
+    <style name="flocknsaveLogoLogin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">180dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+        <item name="android:background">@drawable/rounded_button_dark</item>
+    </style>
+
+    <style name="LoginFieldsTextLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">#20eaeaea</item>
+    </style>
+
+    <style name="LoginFieldsTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/loginText</item>
+    </style>
+
+    <style name="ButtonsStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">26dp</item>
+    </style>
+
+
 </resources>

@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scoop"
+        android:text="About Us"
         android:layout_marginTop="24dp"
         android:textSize="36sp"
         android:gravity="center_horizontal"

@@ -36,7 +36,8 @@
     </string-array>
 
     <string-array name="person_type">
-        <item>Customer</item>
+        <item>Select User Type</item>
+        <item>Buyer</item>
         <item>Supplier</item>
     </string-array>
 
