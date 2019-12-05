@@ -217,6 +217,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
+
         return valid;
     }
 
