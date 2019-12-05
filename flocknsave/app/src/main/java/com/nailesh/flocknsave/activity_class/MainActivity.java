@@ -1,7 +1,6 @@
 package com.nailesh.flocknsave.activity_class;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nailesh.flocknsave.fragment.HomeFragment;
 import com.nailesh.flocknsave.fragment.HowItWorksFragment;
-import com.nailesh.flocknsave.fragment.ScoopFragment;
+import com.nailesh.flocknsave.fragment.AboutUsFragment;
 import com.nailesh.flocknsave.R;
 import com.nailesh.flocknsave.model.Person;
 
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SweetAlertDialog pDialog;
 
     Menu menu;
-
 
     private String persontype;
 
@@ -204,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_scope:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ScoopFragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUsFragment()).addToBackStack(null).commit();
                 navigationView.setCheckedItem(R.id.nav_scope);
                 break;
 

@@ -379,7 +379,7 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void getImageURl(final String productID){
-        Log.d("URI___________",productID);
+        //Log.d("URI___________",productID);
         storageLocation = "gs://flocknsave-62b20.appspot.com/productImages/";
         StorageReference storageReference = storage.getReferenceFromUrl(storageLocation+productID);
 
@@ -389,7 +389,7 @@ public class AddProductActivity extends AppCompatActivity {
 
                 imageURl = String.valueOf(uri);
 
-                Log.d("URI___________",imageURl);
+                //Log.d("URI___________",imageURl);
 
                 db.collection("products").document(productID).update("imageLocation",imageURl)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
