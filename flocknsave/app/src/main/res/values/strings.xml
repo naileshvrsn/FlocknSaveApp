@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
 
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    
+
     <string-array name="cities_register">
         <item>Select Region</item>
         <item>Auckland</item>
@@ -48,6 +48,18 @@
 
     <string name="supplier_text_home">You can now easily and economically access incremental
         sales opportunities.</string>
+
+
+    <!-- About Us Page Tab Titles    -->
+    <string name="about_how">How</string>
+    <string name="about_why">Why</string>
+    <string name="about_what">What</string>
+    <string name="about_when">When</string>
+    <string name="about_where">Where</string>
+    <string name="about_who">Who</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -8,23 +8,27 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.nailesh.flocknsave.R;
 
 public class SearchActivity extends AppCompatActivity {
 
-    String person="";
+
+    FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         this.finish();
@@ -36,7 +40,8 @@ public class SearchActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.header_menu,menu);
 
-        if(!person.isEmpty()){
+        // change toolbar button if user is logged in
+        if(mAuth.getCurrentUser() != null){
             menu.findItem(R.id.nav_menu_login).setVisible(false);
             menu.findItem(R.id.nav_menu_logout).setVisible(true);
         }
@@ -50,6 +55,12 @@ public class SearchActivity extends AppCompatActivity {
             case R.id.nav_menu_login:
                 Intent intent = new Intent(this,LoginActivity.class);
                 startActivity(intent);
+                this.finish();
+                break;
+            case R.id.nav_menu_logout:
+                mAuth.signOut();
+                Intent logout = new Intent(this,LoginActivity.class);
+                startActivity(logout);
                 this.finish();
                 break;
         }

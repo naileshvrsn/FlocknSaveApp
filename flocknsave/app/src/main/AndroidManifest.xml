@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity_class.RegisterActivity"
             android:label="Register"></activity>
+        <activity android:name=".activity_class.AddProductActivity"
+            android:label="Add Product"></activity>
         <activity
             android:name=".activity_class.LoginActivity"
             android:label="Login" />
