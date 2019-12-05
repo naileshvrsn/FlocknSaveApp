@@ -21,11 +21,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nailesh.flocknsave.R;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText login_email,login_password;
     Button signin;
-    TextView forgot_password,register;
+    TextView forgot_password;
+
+    private SweetAlertDialog pDialog;
 
     FirebaseAuth mAuth;
 
@@ -34,6 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        setup();
+    }
+
+    private void setup(){
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
         signin = findViewById(R.id.login_button);
@@ -53,10 +61,22 @@ public class LoginActivity extends AppCompatActivity {
                 if(!validate()){
                     return;
                 }else{
+                    pDialog.show();
                     signinUser();
                 }
             }
         });
+
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetPassword();
+            }
+        });
+
+        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.setTitleText("Loggin In");
+        pDialog.setCancelable(false);
     }
 
     @Override
@@ -90,6 +110,12 @@ public class LoginActivity extends AppCompatActivity {
         this.finish();
     }
 
+    private void resetPassword(){
+        Intent resetPassword = new Intent(getApplicationContext(),ForgotPasswordActivity.class).putExtra("email", login_email.getText().toString());
+        startActivity(resetPassword);
+        this.finish();
+    }
+
     private boolean validate(){
         boolean valid = true;
 
@@ -113,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signinUser(){
+
         login_password.setEnabled(false);
         String email = login_email.getText().toString();
         final String password = login_password.getText().toString();
@@ -124,10 +151,14 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Login failed. Have you registered?", Toast.LENGTH_SHORT).show();
                     login_password.setText("");
                     login_password.setEnabled(true);
+                    pDialog.dismissWithAnimation();
+
                 }else{
                     Toast.makeText(getApplicationContext(), "Login successfull", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    pDialog.dismissWithAnimation();
                 }
+
             }
         });
     }

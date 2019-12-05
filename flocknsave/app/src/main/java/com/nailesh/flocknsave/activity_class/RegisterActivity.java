@@ -25,6 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.nailesh.flocknsave.R;
 import com.nailesh.flocknsave.model.Person;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText _firstName, _lastName, _businessName, _phoneNumber, _streetAddress,
@@ -35,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private LinearLayout _registerLinearLayout;
+    private SweetAlertDialog pDialog;
 
 
     @Override
@@ -44,27 +47,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         setup();
 
-        _signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                register();
-            }
-        });
-
-        _linkLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toLogin();
-            }
-        });
-
-
     }
 
-    private void setup(){
+    private void setup() {
 
-    mAuth = FirebaseAuth.getInstance();
-    db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         //Linear Layout
         _registerLinearLayout = findViewById(R.id.register_linear_layout);
 
@@ -106,19 +94,37 @@ public class RegisterActivity extends AppCompatActivity {
 
         _linkLogin = findViewById(R.id.register_link_login);
 
+        _signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register();
+            }
+        });
+
+        _linkLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toLogin();
+            }
+        });
+
+        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.setTitleText("Creating Account");
+        pDialog.setCancelable(false);
+
     }
 
-    private void register(){
+    private void register() {
 
-        if(!validate()){
+        if (!validate()) {
             return;
-        }else{
+        } else {
             addperson();
         }
 
     }
 
-    private boolean validate(){
+    private boolean validate() {
         boolean valid = true;
         String firstName = _firstName.getText().toString();
         String lastName = _lastName.getText().toString();
@@ -132,6 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email = _email.getText().toString().trim();
         String password = _password.getText().toString().trim();
         String confirmPassword = _confirmPassword.getText().toString().trim();
+        String personType = _personType.getSelectedItem().toString();
 
 
         if (firstName.isEmpty() || firstName.length() < 2) {
@@ -155,11 +162,10 @@ public class RegisterActivity extends AppCompatActivity {
             _businessName.setError(null);
         }
 
-        if (phoneNumber.isEmpty() || phoneNumber.length() < 8 || phoneNumber.length() > 12){
+        if (phoneNumber.isEmpty() || phoneNumber.length() < 8 || phoneNumber.length() > 12) {
             _phoneNumber.setError("Enter a valid phone number");
             valid = false;
-        }
-        else {
+        } else {
             _phoneNumber.setError(null);
         }
 
@@ -177,19 +183,25 @@ public class RegisterActivity extends AppCompatActivity {
             _suburb.setError(null);
         }
 
-        if (postCode.isEmpty() || postCode.length() != 4){
+        if (postCode.isEmpty() || postCode.length() != 4) {
             _postCode.setError("Enter a valid postcode");
             valid = false;
         } else {
             _postCode.setError(null);
         }
 
-        if(region.equals("Select Region")){
+        if (region.equals("Select Region")) {
             Toast.makeText(RegisterActivity.this, "Select Region", Toast.LENGTH_LONG).show();
             valid = false;
         }
-        if(industry.equals("Select Industry")){
+
+        if (industry.equals("Select Industry")) {
             Toast.makeText(RegisterActivity.this, "Select Industry", Toast.LENGTH_LONG).show();
+            valid = false;
+        }
+
+        if (personType.equals("Select User Type")) {
+            Toast.makeText(RegisterActivity.this, "Select User Type", Toast.LENGTH_LONG).show();
             valid = false;
         }
 
@@ -207,27 +219,25 @@ public class RegisterActivity extends AppCompatActivity {
             _password.setError(null);
         }
 
-        if(confirmPassword.isEmpty() || !password.equals(confirmPassword)){
+        if (confirmPassword.isEmpty() || !password.equals(confirmPassword)) {
             _confirmPassword.setError("Passwords do not match");
             valid = false;
-        }else {
+        } else {
             _confirmPassword.setError(null);
         }
-
-
-
 
 
         return valid;
     }
 
-    private void toLogin(){
+    private void toLogin() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         this.finish();
     }
 
-    private void addperson(){
+    private void addperson() {
+        pDialog.show();
         _registerLinearLayout.getFocusedChild().setEnabled(false);
         String firstName = _firstName.getText().toString();
         String lastName = _lastName.getText().toString();
@@ -243,42 +253,40 @@ public class RegisterActivity extends AppCompatActivity {
         String personType = _personType.getSelectedItem().toString();
 
 
-        final Person person = new Person(firstName,lastName,businessName,phoneNumber,
-                streetAddress,suburb,postCode,region,industry,personType);
+        final Person person = new Person(firstName, lastName, businessName, phoneNumber,
+                streetAddress, suburb, postCode, region, industry, personType);
 
-        mAuth.createUserWithEmailAndPassword(email,password)
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()){
-                            if(task.getException() instanceof FirebaseAuthUserCollisionException){
+                        if (!task.isSuccessful()) {
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        }else{
+                        } else {
                             db.collection("users").document(mAuth.getUid()).set(person).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(!task.isSuccessful()){
+                                    if (!task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         return;
-                                    }else {
+                                    } else {
                                         Toast.makeText(RegisterActivity.this, "Successful ", Toast.LENGTH_LONG).show();
 
                                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                             @Override
                                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                                if(task.isSuccessful()){
+                                                if (task.isSuccessful()) {
                                                     final FirebaseUser firebaseUser = mAuth.getCurrentUser();
                                                     firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()) {
                                                                 Toast.makeText(RegisterActivity.this, "Verification email sent to " + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
-                                                            }
-                                                            else {
+                                                            } else {
                                                                 Toast.makeText(RegisterActivity.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
@@ -286,7 +294,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
-
+                                        pDialog.dismiss();
                                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                                         RegisterActivity.this.finish();
                                     }
