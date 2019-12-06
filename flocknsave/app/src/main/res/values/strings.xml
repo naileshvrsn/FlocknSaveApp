@@ -50,12 +50,18 @@
         sales opportunities.</string>
 
 
-    <!-- About Us Page Tab Titles    -->
+    <!-- About Us Page Tab Titles -->
     <string name="about_how">How</string>
     <string name="about_why">Why</string>
     <string name="about_what">What</string>
     <string name="about_when">When</string>
     <string name="about_where">Where</string>
     <string name="about_who">Who</string>
+
+    <!-- About Us Why text -->
+    <string name="why_text">FlocknSave is a new game changing tool that enables small
+        businesses to come together and purchase goods &amp; services more efficiently
+        to reduce their input costs, whilst Suppliers benefit by reducing new customer acquisition cost.</string>
+
 
 </resources>

@@ -108,7 +108,7 @@
     <style name="LoginFieldsTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/loginText</item>
     </style>
 
@@ -116,6 +116,18 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">26dp</item>
+    </style>
+
+    <!-- About Us styles. -->
+    <style name="whyText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:layout_marginTop">36dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/flocknsaveDarkBlue</item>
     </style>
 
 
