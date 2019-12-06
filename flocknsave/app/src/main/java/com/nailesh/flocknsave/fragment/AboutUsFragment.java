@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.nailesh.flocknsave.R;
+import com.nailesh.flocknsave.adapter.SectionPagerAdapter;
 
 public class AboutUsFragment extends Fragment {
 
@@ -21,14 +22,17 @@ public class AboutUsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_about_us,container,false);
+        setup(view);
+        return view;
+    }
 
+    private void setup(View view){
         about_image = view.findViewById(R.id.about_tab_image);
         about_image.setImageResource(R.drawable.ic_home);
 
 
-        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(getContext(), getFragmentManager(), about_image);
+        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(getContext(), getFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionPagerAdapter);
         TabLayout tabs = view.findViewById(R.id.tabs);
@@ -80,12 +84,5 @@ public class AboutUsFragment extends Fragment {
 
             }
         });
-
-
-
-
-        return view;
-
-
     }
 }

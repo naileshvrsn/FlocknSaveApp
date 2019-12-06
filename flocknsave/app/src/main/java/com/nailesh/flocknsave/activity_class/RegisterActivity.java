@@ -294,17 +294,16 @@ public class RegisterActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
-                                        pDialog.dismiss();
                                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                                         RegisterActivity.this.finish();
                                     }
                                 }
                             });
                         }
+                        pDialog.dismiss();
                     }
                 });
     }
-
 
     @Override
     public void onBackPressed() {

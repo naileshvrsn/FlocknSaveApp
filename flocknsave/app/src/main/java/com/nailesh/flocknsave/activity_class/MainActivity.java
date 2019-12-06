@@ -40,18 +40,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private DocumentReference docRef;
-
     private String firstName, lastName;
-
     private TextView user_name;
-
     private SweetAlertDialog pDialog;
-
-    Menu menu;
-
+    private Menu menu;
     private String persontype;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setContentView(R.layout.activity_main);
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.setTitleText("Adding Product");
+        pDialog.setTitleText("Loading");
+
         pDialog.setCancelable(false);
         pDialog.show();
 
@@ -120,9 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
 
-
         }
-
 
         //setup toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -174,12 +166,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this,LoginActivity.class);
                 startActivity(intent);
                 break;
+
             case R.id.nav_menu_logout:
                 mAuth.signOut();
                 Intent logout = new Intent(this,LoginActivity.class);
                 startActivity(logout);
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -206,10 +198,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_search_products:
-                Intent intent = new Intent(this,SearchActivity.class);
+                Intent intent = new Intent(this,SelectCategoryActivity.class);
                 startActivity(intent);
                 this.finish();
                 break;
+
             case R.id.nav_add_product:
                 addProduct();
                 break;

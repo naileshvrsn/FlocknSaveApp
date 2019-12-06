@@ -58,8 +58,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_margin="8dp"/>
+
             <Spinner
-                android:id="@+id/add_product_industry"
+                android:id="@+id/add_product_category"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_margin="8dp"/>

@@ -35,6 +35,24 @@
         <item>Agriculture</item>
     </string-array>
 
+    <string-array name="category">
+        <item>Select Category</item>
+        <item>Agriculture Contracting</item>
+        <item>Animal Health</item>
+        <item>Construction</item>
+        <item>Dairy Shed Supplies</item>
+        <item>Electricity</item>
+        <item>Fencing</item>
+        <item>Fertiliser</item>
+        <item>Finance</item>
+        <item>Fuel, Oils and Lubricants</item>
+        <item>Safety and Clothing</item>
+        <item>Stockfeed</item>
+        <item>Vehicles</item>
+        <item>Water and Drainage</item>
+        <item>Weed and Pest</item>
+    </string-array>
+
     <string-array name="person_type">
         <item>Select User Type</item>
         <item>Buyer</item>
