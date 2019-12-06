@@ -25,9 +25,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private TextView cancel;
     private EditText email;
     private Button resetPassword;
-
     private SweetAlertDialog pDialog;
-
     private FirebaseAuth mAuth;
 
     @Override

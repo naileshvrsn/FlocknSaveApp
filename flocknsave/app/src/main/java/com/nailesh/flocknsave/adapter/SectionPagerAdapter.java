@@ -1,13 +1,7 @@
-package com.nailesh.flocknsave.fragment;
+package com.nailesh.flocknsave.adapter;
 
 import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TabHost;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,6 +9,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.nailesh.flocknsave.R;
+import com.nailesh.flocknsave.fragment.AboutHowFragment;
+import com.nailesh.flocknsave.fragment.AboutWhatFragment;
+import com.nailesh.flocknsave.fragment.AboutWhenFragment;
+import com.nailesh.flocknsave.fragment.AboutWhereFragment;
+import com.nailesh.flocknsave.fragment.AboutWhoFragment;
+import com.nailesh.flocknsave.fragment.AboutWhyFragment;
 
 public class SectionPagerAdapter extends FragmentPagerAdapter {
 
@@ -26,13 +26,10 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
                     R.drawable.icon_where,R.drawable.icon_who};
 
     private final Context mContext;
-    private  ImageView aboutImage;
 
-
-    public SectionPagerAdapter(Context context, FragmentManager fm, ImageView img) {
+    public SectionPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
-        aboutImage = img;
     }
 
     @Override
@@ -68,13 +65,10 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
         return mContext.getResources().getString(TAB_TITLES[position]);
     }
 
-
     @Override
     public int getCount() {
         // Show 6 total pages.
-        return 6;
+        return TAB_TITLES.length;
     }
-
-
 
 }

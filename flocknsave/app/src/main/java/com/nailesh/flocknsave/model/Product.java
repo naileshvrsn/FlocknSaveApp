@@ -2,27 +2,25 @@ package com.nailesh.flocknsave.model;
 
 public class Product {
     private String name;
-    private String decription;
+    private String description;
     private String unit;
     private String savings;
     private String region;
-    private String industry;
+    private String category;
     private String supplierId;
     private String imageLocation;
 
-    public Product(String name, String decription, String unit, String savings,
-                   String region, String industry, String supplierId, String imageLocation) {
+    public Product(String name, String description, String unit, String savings,
+                   String region, String category, String supplierId, String imageLocation) {
         this.name = name;
-        this.decription = decription;
+        this.description = description;
         this.unit = unit;
         this.savings = savings;
         this.region = region;
-        this.industry = industry;
+        this.category = category;
         this.supplierId = supplierId;
         this.imageLocation = imageLocation;
     }
-
-
 
     public Product() {
     }
@@ -35,12 +33,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getDecription() {
-        return decription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getUnit() {
@@ -67,12 +65,12 @@ public class Product {
         this.region = region;
     }
 
-    public String getIndustry() {
-        return industry;
+    public String getcategory() {
+        return category;
     }
 
-    public void setIndustry(String industry) {
-        this.industry = industry;
+    public void setcategory(String category) {
+        this.category = category;
     }
 
     public String getSupplierId() {

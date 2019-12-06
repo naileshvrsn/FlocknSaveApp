@@ -45,33 +45,21 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class AddProductActivity extends AppCompatActivity {
 
-
     private TextView name,description,unit,saving;
-    private Spinner region,industry,supplier;
+    private Spinner region,supplier,category;
     private Button addProduct;
-
-
     private ImageView addImage;
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private DocumentReference docRef;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private StorageReference ref;
-
     private Person pSupplier;
-
     private String persontype, storageLocation, imageURl;
-
     private Uri filePath;
     private final int PICK_IMAGE_REQUEST = 71;
-
     private SweetAlertDialog pDialog;
-
-    public AddProductActivity() {
-    }
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,11 +128,12 @@ public class AddProductActivity extends AppCompatActivity {
         regionadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         region.setAdapter(regionadapter);
 
-        industry = findViewById(R.id.add_product_industry);
-        ArrayAdapter<CharSequence> industryadapter = ArrayAdapter.createFromResource(getApplicationContext(),
-                R.array.industry, android.R.layout.simple_spinner_item);
-        industryadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        industry.setAdapter(industryadapter);
+        category = findViewById(R.id.add_product_category);
+        ArrayAdapter<CharSequence> categoryadapter = ArrayAdapter.createFromResource(getApplicationContext(),
+                R.array.category, android.R.layout.simple_spinner_item);
+        categoryadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category.setAdapter(categoryadapter);
+
 
         supplier = findViewById(R.id.add_product_supplier);
 
@@ -174,7 +163,7 @@ public class AddProductActivity extends AppCompatActivity {
         pDialog.setCancelable(false);
 
 
-    };
+    }
 
     private boolean validate(){
         boolean valid = true;
@@ -184,8 +173,7 @@ public class AddProductActivity extends AppCompatActivity {
         String pUnit = unit.getText().toString();
         String pSaving = saving.getText().toString();
         String pRegion = region.getSelectedItem().toString();
-        String pIndustry = industry.getSelectedItem().toString();
-
+        String pCategory = category.getSelectedItem().toString();
 
         if (pName.isEmpty() || pName.length() < 2) {
             name.setError("at least 2 characters");
@@ -200,7 +188,6 @@ public class AddProductActivity extends AppCompatActivity {
         } else {
             description.setError(null);
         }
-
 
         if (pUnit.isEmpty() || pUnit.length() < 2) {
             unit.setError("at least 2 characters");
@@ -225,8 +212,9 @@ public class AddProductActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Select Region", Toast.LENGTH_LONG).show();
             valid = false;
         }
-        if(pIndustry.equals("Select Industry")){
-            Toast.makeText(getApplicationContext(), "Select Industry", Toast.LENGTH_LONG).show();
+
+        if(pCategory.equals("Select Category")){
+            Toast.makeText(getApplicationContext(), "Select Category", Toast.LENGTH_LONG).show();
             valid = false;
         }
 
@@ -302,7 +290,6 @@ public class AddProductActivity extends AppCompatActivity {
 
     // get supplier id if the logged in user is an Admin
     private void getSupplierId(String supplierName){
-        final Person[] person = new Person[1];
 
         db.collection("users")
                 .whereEqualTo("firstName",supplierName)
@@ -315,7 +302,6 @@ public class AddProductActivity extends AppCompatActivity {
                         //start upload once the supplier id if found;
                         uploadProduct(document.getId());
                         }
-
                 }else {
                     Log.d("Error getting documents: ", task.getException().toString());
                 }
@@ -329,10 +315,10 @@ public class AddProductActivity extends AppCompatActivity {
         String pUnit = unit.getText().toString();
         String pSaving = saving.getText().toString();
         String pRegion = region.getSelectedItem().toString();
-        String pIndustry = industry.getSelectedItem().toString();
+        String pCategory = category.getSelectedItem().toString();
 
         // Create a new product object
-        Product product = new Product(pName,pDescription,pUnit,pSaving,pRegion,pIndustry,supplierID,"");
+        Product product = new Product(pName,pDescription,pUnit,pSaving,pRegion,pCategory,supplierID,"");
 
         //upload the product to database
         db.collection("products")
@@ -403,7 +389,7 @@ public class AddProductActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         //User Directed to main page once product uploaded successfully
-                                        gotoMain();
+                                        onBackPressed();
                                     }
                                 });
                                 dlgAlert.setCancelable(true);
@@ -415,16 +401,11 @@ public class AddProductActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("URI", "Error");
+                Log.d("URI--------------", "Error");
             }
         });
     }
 
-    private void gotoMain(){
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        this.finish();
-    }
 }
 
 

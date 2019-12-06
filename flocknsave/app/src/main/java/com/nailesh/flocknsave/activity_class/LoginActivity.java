@@ -25,13 +25,11 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText login_email,login_password;
-    Button signin;
-    TextView forgot_password;
-
+    private EditText login_email,login_password;
+    private Button signin;
+    private TextView forgot_password;
     private SweetAlertDialog pDialog;
-
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         login_password = findViewById(R.id.login_password);
         signin = findViewById(R.id.login_button);
         forgot_password = findViewById(R.id.login_link_reset_password);
-        //register = findViewById(R.id.login_link_register);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
