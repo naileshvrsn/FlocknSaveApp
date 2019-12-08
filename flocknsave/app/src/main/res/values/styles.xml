@@ -133,7 +133,7 @@
     <style name="howMainText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:paddingLeft">18dp</item>
         <item name="android:textColor">@color/flocknsaveDarkBlue</item>
         <item name="android:layout_marginTop">32dp</item>
@@ -142,7 +142,7 @@
     <style name="howGreenText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/flocknsaveGreen</item>
         <item name="android:paddingTop">6dp</item>
@@ -151,15 +151,15 @@
     <style name="howRedText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/red</item>
         <item name="android:paddingTop">6dp</item>
     </style>
 
     <style name="howCheckImage">
-        <item name="android:layout_width">32dp</item>
-        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">28dp</item>
         <item name="android:layout_marginLeft">32dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginRight">4dp</item>
@@ -167,12 +167,22 @@
     </style>
 
     <style name="howCrossImage">
-        <item name="android:layout_width">32dp</item>
-        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">28dp</item>
         <item name="android:layout_marginLeft">32dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginRight">4dp</item>
         <item name="android:src">@drawable/ic_cross_red_24dp</item>
+    </style>
+
+    <style name="whoText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/flocknsaveDarkBlue</item>
     </style>
 
 </resources>

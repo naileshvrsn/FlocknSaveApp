@@ -133,4 +133,40 @@
         No need to accept any offer or obligation to bid
     </string>
 
+    <string name="what_text">
+        FlocknSave can be used to purchase generic goods and services like Electricity,
+        Fuel, Finance, Fencing, Fertiliser, Animal, Health, Sprays, Contracting etc.
+    </string>
+
+    <string name="when_text">
+        FlocknSave is available 24 /7 for SME Buyers, Suppliers who believe in helping
+        others save time and money will ultimately benefit themselves. The more who participate the more effective the results.
+    </string>
+
+    <string name="where_text">
+        FlocknSave is available on any device 24/7 in the upper North Island and growing every
+        day as members advise us of their needs and tell others of the time and money savings benefits.
+    </string>
+
+    <string name="who_text_1">
+        “Like you, we were frustrated at the cost of basic goods and services in NZ and how it holds the economy back?”
+    </string>
+
+    <string name="who_text_2">
+        “So we decided to put our money where our mouths were and develop a market place where Buyers and Suppliers
+        can come together &amp; negotiate the best deal quickly and effectively”
+    </string>
+
+    <string name="who_text_3">
+        “Now its your turn... Help us by getting amongst it”.
+    </string>
+
+    <string name="who_text_4">
+        Flock together n Save together
+    </string>
+
+    <string name="who_text_5">
+        Colin Mc Dowell &amp; Peter Stockley
+    </string>
+
 </resources>
