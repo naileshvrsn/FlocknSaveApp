@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.setTitleText("Loggin In");
+        pDialog.setTitleText("Logging In");
         pDialog.setCancelable(false);
     }
 

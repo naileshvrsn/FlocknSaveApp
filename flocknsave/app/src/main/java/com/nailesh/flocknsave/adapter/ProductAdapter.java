@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.nailesh.flocknsave.R;
 import com.nailesh.flocknsave.model.Product;
 import com.squareup.picasso.Picasso;
 
 public class ProductAdapter extends FirestoreRecyclerAdapter<Product, ProductAdapter.ProductHolder> {
 
+    private OnItemClickListener listener;
 
     public ProductAdapter(@NonNull FirestoreRecyclerOptions<Product> options) {
         super(options);
@@ -63,9 +65,27 @@ public class ProductAdapter extends FirestoreRecyclerAdapter<Product, ProductAda
             product_saving = itemView.findViewById(R.id.product_saving);
 
             product_image = itemView.findViewById(R.id.product_image_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION && listener != null){
+                        listener.onItemClick(getSnapshots().getSnapshot(position));
+                    }
+                }
+            });
         }
 
     }
 
+
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
 
 }

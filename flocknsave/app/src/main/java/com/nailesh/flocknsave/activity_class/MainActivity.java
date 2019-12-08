@@ -2,6 +2,7 @@ package com.nailesh.flocknsave.activity_class;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -188,17 +189,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_how_it_works:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HowItWorksFragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HowItWorksFragment()).commit();
                 navigationView.setCheckedItem(R.id.nav_how_it_works);
                 break;
 
             case R.id.nav_scope:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUsFragment()).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUsFragment()).commit();
                 navigationView.setCheckedItem(R.id.nav_scope);
                 break;
 
             case R.id.nav_search_products:
-                Intent intent = new Intent(this,SelectCategoryActivity.class);
+                Intent intent = new Intent(this,SelectCategoryActivity.class).putExtra("personType",persontype);
                 startActivity(intent);
                 this.finish();
                 break;
@@ -210,6 +211,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_admin_add_product:
                 addProduct();
                 break;
+
+            case R.id.nav_update_product:
+                updateProduct();
+                break;
+
+            case R.id.nav_admin_update_product:
+                selectSupplier();
+                break;
+
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -229,12 +239,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }
         else{
-            super.onBackPressed();
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
         }
     }
 
     private void addProduct(){
-        Intent intent = new Intent(this,AddProductActivity.class);
+        Intent intent = new Intent(this,AddProductActivity.class)
+                .putExtra("personType",persontype)
+            .putExtra("updateProduct",false);
+        startActivity(intent);
+        this.finish();
+    }
+
+    private void updateProduct(){
+        Intent intent = new Intent(this,SearchActivity.class)
+                .putExtra("personType",persontype)
+                .putExtra("supplierId",mAuth.getCurrentUser().getUid())
+                .putExtra("updateProduct",true);
+        startActivity(intent);
+        this.finish();
+    }
+
+    private void selectSupplier(){
+        Intent intent = new Intent(this,SupplierListActivity.class)
+                .putExtra("personType",persontype);
         startActivity(intent);
         this.finish();
     }

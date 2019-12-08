@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -36,7 +38,10 @@ public class SearchActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private CollectionReference productRef;
     private ProductAdapter adapter;
-    private String category;
+    private String category,personType,productId,supplierId;
+    private AlertDialog.Builder dlgAlert;
+    private boolean updateProduct;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +54,39 @@ public class SearchActivity extends AppCompatActivity {
     private void setup() {
 
         mAuth = FirebaseAuth.getInstance();
+
         db = FirebaseFirestore.getInstance();
         productRef = db.collection("products");
 
-        category = getIntent().getExtras().getString("category");
+        category = getIntent().getStringExtra("category");
+        personType = getIntent().getStringExtra("personType");
+
+        if(personType.equals("Admin")){
+            supplierId = getIntent().getStringExtra("supplierId");
+        }else{
+            supplierId = mAuth.getUid();
+        }
+
+
+        updateProduct = getIntent().getBooleanExtra("updateProduct", false);
+
+        dlgAlert = new AlertDialog.Builder(SearchActivity.this);
+
 
         setUpRecyclerView();
     }
 
     private void setUpRecyclerView() {
-        Query query = productRef.whereEqualTo("category", category);
+
+        Query query;
+
+        if(updateProduct){
+            query = productRef.whereEqualTo("supplierId", supplierId);
+            dlgAlert.setMessage("No product for this supplier");
+        }else {
+            query = productRef.whereEqualTo("category", category);
+            dlgAlert.setMessage("No product for " + category + " category");
+        }
 
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -67,8 +95,6 @@ public class SearchActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     int length = task.getResult().size();
                     if (length == 0) {
-                        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(SearchActivity.this);
-                        dlgAlert.setMessage("No product for " + category + " category");
                         dlgAlert.setTitle("Error!");
                         dlgAlert.setPositiveButton("Go Back", new DialogInterface.OnClickListener() {
                             @Override
@@ -93,6 +119,28 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot) {
+              productId  = documentSnapshot.getId();
+
+              if(updateProduct){
+                  Intent updateproduct = new Intent(getApplicationContext(),AddProductActivity.class)
+                          .putExtra("productId",productId)
+                          .putExtra("updateProduct",updateProduct)
+                          .putExtra("personType",personType)
+                          .putExtra("supplierId",supplierId);
+                  startActivity(updateproduct);
+              }else{
+                  //Toast.makeText(getApplicationContext(),productId.toString(),Toast.LENGTH_SHORT).show();
+                  Intent displayproduct = new Intent(getApplicationContext(), ProductDetailsActivity.class)
+                          .putExtra("productId",productId)
+                          .putExtra("personType",personType);
+                  startActivity(displayproduct);
+              }
+            }
+        });
     }
 
     @Override
@@ -109,7 +157,20 @@ public class SearchActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, SelectCategoryActivity.class);
+        Intent intent;
+        if(updateProduct){
+            if(personType.equals("Admin")){
+                intent = new Intent(this, SupplierListActivity.class)
+                        .putExtra("personType",personType);;
+            }else{
+                intent = new Intent(this, MainActivity.class);
+            }
+
+        }else{
+            intent = new Intent(this, SelectCategoryActivity.class)
+                    .putExtra("personType",personType);
+        }
+
         startActivity(intent);
         this.finish();
     }
@@ -121,7 +182,7 @@ public class SearchActivity extends AppCompatActivity {
         inflater.inflate(R.menu.header_menu, menu);
 
         // change toolbar button if user is logged in
-        if (mAuth.getCurrentUser() != null) {
+        if (personType != null) {
             menu.findItem(R.id.nav_menu_login).setVisible(false);
             menu.findItem(R.id.nav_menu_logout).setVisible(true);
         }

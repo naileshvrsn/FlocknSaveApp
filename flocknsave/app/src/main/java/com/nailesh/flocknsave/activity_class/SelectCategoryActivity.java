@@ -15,6 +15,8 @@ import com.nailesh.flocknsave.R;
 
 public class SelectCategoryActivity extends AppCompatActivity {
 
+    private String personType;
+
     private FirebaseAuth mAuth;
 
     private CardView agriculture_contracting, animal_health, construction, dairy_shed_supplies,
@@ -31,6 +33,9 @@ public class SelectCategoryActivity extends AppCompatActivity {
     }
 
     private void setup() {
+
+        personType = getIntent().getStringExtra("personType");
+
         mAuth = FirebaseAuth.getInstance();
 
         agriculture_contracting = findViewById(R.id.category_agriculture_contracting);
@@ -126,7 +131,10 @@ public class SelectCategoryActivity extends AppCompatActivity {
 
     private void displayProducts(String pCategory) {
 
-        Intent intent = new Intent(getApplicationContext(), SearchActivity.class).putExtra("category", pCategory);
+        Intent intent = new Intent(getApplicationContext(), SearchActivity.class)
+                .putExtra("category", pCategory)
+                .putExtra("personType",personType)
+                .putExtra("updateProduct",false);
         startActivity(intent);
         this.finish();
 
@@ -146,7 +154,7 @@ public class SelectCategoryActivity extends AppCompatActivity {
         inflater.inflate(R.menu.header_menu, menu);
 
         // change toolbar button if user is logged in
-        if (mAuth.getCurrentUser() != null) {
+        if (personType != null) {
             menu.findItem(R.id.nav_menu_login).setVisible(false);
             menu.findItem(R.id.nav_menu_logout).setVisible(true);
         }
