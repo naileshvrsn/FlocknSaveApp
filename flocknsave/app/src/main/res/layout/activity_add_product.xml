@@ -82,7 +82,7 @@
             android:layout_marginBottom="10dp"/>
 
         <Spinner
-            android:id="@+id/add_product_industry"
+            android:id="@+id/add_product_category"
             android:background="@drawable/rounded_button_dark_transparent"
             style="@style/LoginFieldsTextStyle"
             android:minHeight="48dp"
