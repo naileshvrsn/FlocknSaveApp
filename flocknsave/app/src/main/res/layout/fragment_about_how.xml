@@ -1,16 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.AboutHowFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="About Us: How"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            style="@style/howMainText"
+            android:text="@string/how_text_1" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCheckImage"
+                android:id="@+id/check1" />
+            <TextView
+                android:id="@+id/text1"
+                style="@style/howGreenText"
+                android:layout_toRightOf="@id/check1"
+                android:text="@string/how_text_1_1"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCrossImage"
+                android:id="@+id/cross1" />
+            <TextView
+                android:id="@+id/text2"
+                style="@style/howRedText"
+                android:layout_toRightOf="@id/cross1"
+                android:text="@string/how_text_1_2"/>
+        </RelativeLayout>
+
+        <TextView
+            style="@style/howMainText"
+            android:text="@string/how_text_2" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCheckImage"
+                android:id="@+id/check2" />
+            <TextView
+                android:id="@+id/text3"
+                style="@style/howGreenText"
+                android:layout_toRightOf="@id/check2"
+                android:text="@string/how_text_2_1"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCrossImage"
+                android:id="@+id/cross2" />
+            <TextView
+                android:id="@+id/text4"
+                style="@style/howRedText"
+                android:layout_toRightOf="@id/cross2"
+                android:text="@string/how_text_2_2"/>
+        </RelativeLayout>
+
+        <TextView
+            style="@style/howMainText"
+            android:text="@string/how_text_3" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCheckImage"
+                android:id="@+id/check3" />
+            <TextView
+                android:id="@+id/text5"
+                style="@style/howGreenText"
+                android:layout_toRightOf="@id/check3"
+                android:text="@string/how_text_3_1"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCrossImage"
+                android:id="@+id/cross3" />
+            <TextView
+                android:id="@+id/text6"
+                style="@style/howRedText"
+                android:layout_toRightOf="@id/cross3"
+                android:text="@string/how_text_3_2"/>
+        </RelativeLayout>
+
+        <TextView
+            style="@style/howMainText"
+            android:text="@string/how_text_4" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCheckImage"
+                android:id="@+id/check4" />
+            <TextView
+                android:id="@+id/text7"
+                style="@style/howGreenText"
+                android:layout_toRightOf="@id/check4"
+                android:text="@string/how_text_4_1"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCrossImage"
+                android:id="@+id/cross4" />
+            <TextView
+                android:id="@+id/text8"
+                style="@style/howRedText"
+                android:layout_toRightOf="@id/cross4"
+                android:text="@string/how_text_4_2"/>
+        </RelativeLayout>
+
+        <TextView
+            style="@style/howMainText"
+            android:text="@string/how_text_5" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCheckImage"
+                android:id="@+id/check5" />
+            <TextView
+                android:id="@+id/text9"
+                style="@style/howGreenText"
+                android:layout_toRightOf="@id/check5"
+                android:text="@string/how_text_5_1"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/howCrossImage"
+                android:id="@+id/cross5" />
+            <TextView
+                android:id="@+id/text10"
+                style="@style/howRedText"
+                android:layout_toRightOf="@id/cross5"
+                android:text="@string/how_text_5_2"
+                android:layout_marginBottom="50dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

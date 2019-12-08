@@ -76,10 +76,61 @@
     <string name="about_where">Where</string>
     <string name="about_who">Who</string>
 
-    <!-- About Us Why text -->
-    <string name="why_text">FlocknSave is a new game changing tool that enables small
+    <!-- About Us text -->
+    <string name="why_text">
+        FlocknSave is a new game changing tool that enables small
         businesses to come together and purchase goods &amp; services more efficiently
-        to reduce their input costs, whilst Suppliers benefit by reducing new customer acquisition cost.</string>
+        to reduce their input costs, whilst Suppliers benefit by reducing new customer acquisition cost.
+    </string>
 
+    <string name="how_text_1">
+        We provide an \'Open Source Market Place\'
+    </string>
+    <string name="how_text_1_1">
+        Everyone is instantly accessible in one place no adverts
+    </string>
+    <string name="how_text_1_2">
+        No spending hours searching for suppliers or customers
+    </string>
+
+    <string name="how_text_2">
+        We enable \'Commoditization\'
+    </string>
+    <string name="how_text_2_1">
+        Products by specification not by brand
+    </string>
+    <string name="how_text_2_2">
+        No spending hours comparing apples with bananas
+    </string>
+
+    <string name="how_text_3">
+        We enable \'Aggregation\'
+    </string>
+    <string name="how_text_3_1">
+        Instant Power in numbers Flock together n Save
+    </string>
+    <string name="how_text_3_2">
+        No spending hours getting others onboard to increase volumes
+    </string>
+
+    <string name="how_text_4">
+        Only the \'Best price wins\'
+    </string>
+    <string name="how_text_4_1">
+        Automatic live reverse auction plus weekly option
+    </string>
+    <string name="how_text_4_2">
+        No spending hours haggling on the phone or by email
+    </string>
+
+    <string name="how_text_5">
+        You are \'Anonymous\'
+    </string>
+    <string name="how_text_5_1">
+        Buyers and Suppliers remain anonymous
+    </string>
+    <string name="how_text_5_2">
+        No need to accept any offer or obligation to bid
+    </string>
 
 </resources>
