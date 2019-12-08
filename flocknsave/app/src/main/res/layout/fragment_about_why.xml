@@ -5,11 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="About Us: Why"/>
+        style="@style/whyText"
+        android:text="@string/why_text" />
 
 </LinearLayout>

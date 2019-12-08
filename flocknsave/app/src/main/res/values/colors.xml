@@ -9,4 +9,8 @@
 
     <color name="loginText">#3a3a3a</color>
     <color name="lightCyanBlue">#edf5f7</color>
+    <color name="red">#f54242</color>
+
+    <color name="drawerBackground">#fafeff</color>
+    <color name="transparentBackground">#30ffffff</color>
 </resources>

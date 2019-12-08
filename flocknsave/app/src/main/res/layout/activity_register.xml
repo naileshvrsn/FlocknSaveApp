@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background">
 
     <LinearLayout
@@ -26,7 +27,6 @@
                 android:src="@drawable/logo_flocknsave" />
 
             <ImageView
-                android:id="@+id/register_imageView"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_register"
@@ -46,8 +46,7 @@
             style="@style/LoginFieldsTextLayout">
         <EditText
             android:id="@+id/register_last_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LoginFieldsTextStyle"
             android:hint="Last name"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,8 +54,7 @@
             style="@style/LoginFieldsTextLayout">
         <EditText
             android:id="@+id/register_businessname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LoginFieldsTextStyle"
             android:hint="Business Name"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,8 +62,7 @@
             style="@style/LoginFieldsTextLayout">
         <EditText
             android:id="@+id/register_phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LoginFieldsTextStyle"
             android:hint="Phone number"
             android:inputType="phone"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -74,8 +71,8 @@
             style="@style/LoginFieldsTextLayout">
         <EditText
             android:id="@+id/register_street_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LoginFieldsTextStyle"
+            android:inputType="textPostalAddress"
             android:hint="Street Address"
             android:layout_margin="4dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -84,50 +81,51 @@
             style="@style/LoginFieldsTextLayout">
         <EditText
             android:id="@+id/register_suburb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Distict/Suburb"/>
+            style="@style/LoginFieldsTextStyle"
+            android:inputType="text"
+            android:hint="District/Suburb"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/LoginFieldsTextLayout">
         <EditText
             android:id="@+id/register_post_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LoginFieldsTextStyle"
             android:hint="Post Code"
             android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/register_region_spinner"
-            android:background="@drawable/rounded_button_dark"
+            android:background="@drawable/rounded_button_dark_transparent"
             style="@style/LoginFieldsTextStyle"
             android:minHeight="48dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
         <Spinner
             android:id="@+id/register_industry_spinner"
-            android:background="@drawable/rounded_button_dark"
+            android:background="@drawable/rounded_button_dark_transparent"
             style="@style/LoginFieldsTextStyle"
             android:minHeight="48dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/LoginFieldsTextLayout">
         <EditText
             android:id="@+id/register_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LoginFieldsTextStyle"
+            android:inputType="textEmailAddress"
             android:hint="Email"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/LoginFieldsTextLayout">
+            style="@style/LoginFieldsTextLayout"
+            app:passwordToggleEnabled="true">
         <EditText
             android:id="@+id/register_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LoginFieldsTextStyle"
             android:hint="Password"
             android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -136,17 +134,17 @@
             style="@style/LoginFieldsTextLayout">
         <EditText
             android:id="@+id/register_confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LoginFieldsTextStyle"
             android:hint="Confirm Password"
             android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/register_person_type_spinner"
-            android:background="@drawable/rounded_button_dark"
+            android:background="@drawable/rounded_button_dark_transparent"
             style="@style/LoginFieldsTextStyle"
             android:minHeight="48dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
         <androidx.appcompat.widget.AppCompatButton

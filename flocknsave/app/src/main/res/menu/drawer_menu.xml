@@ -21,8 +21,8 @@
             android:title="Search Products" />
         <item
             android:id="@+id/nav_scope"
-            android:icon="@drawable/ic_scoop"
-            android:title="The Scoop" />
+            android:icon="@drawable/ic_question_answer_black_24dp"
+            android:title="About Us" />
     </group>
     <!--Customer Nav option-->
     <group

@@ -29,7 +29,7 @@ public class AboutUsFragment extends Fragment {
 
     private void setup(View view){
         about_image = view.findViewById(R.id.about_tab_image);
-        about_image.setImageResource(R.drawable.ic_home);
+        about_image.setImageResource(R.drawable.icon_how);
 
 
         SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(getContext(), getFragmentManager());
@@ -43,32 +43,32 @@ public class AboutUsFragment extends Fragment {
                 switch (tab.getPosition()){
                     case 0:
                         about_image.setVisibility(View.GONE);
-                        about_image.setImageResource(R.drawable.ic_home);
+                        about_image.setImageResource(R.drawable.icon_how);
                         about_image.setVisibility(View.VISIBLE);
                         break;
                     case 1:
                         about_image.setVisibility(View.GONE);
-                        about_image.setImageResource(R.drawable.ic_account);
+                        about_image.setImageResource(R.drawable.icon_why);
                         about_image.setVisibility(View.VISIBLE);
                         break;
                     case 2:
                         about_image.setVisibility(View.GONE);
-                        about_image.setImageResource(R.drawable.ic_add_photo);
+                        about_image.setImageResource(R.drawable.icon_what);
                         about_image.setVisibility(View.VISIBLE);
                         break;
                     case 3:
                         about_image.setVisibility(View.GONE);
-                        about_image.setImageResource(R.drawable.ic_add_product);
+                        about_image.setImageResource(R.drawable.icon_when);
                         about_image.setVisibility(View.VISIBLE);
                         break;
                     case 4:
                         about_image.setVisibility(View.GONE);
-                        about_image.setImageResource(R.drawable.ic_dashboard);
+                        about_image.setImageResource(R.drawable.icon_where);
                         about_image.setVisibility(View.VISIBLE);
                         break;
                     case 5:
                         about_image.setVisibility(View.GONE);
-                        about_image.setImageResource(R.drawable.ic_login);
+                        about_image.setImageResource(R.drawable.icon_who);
                         about_image.setVisibility(View.VISIBLE);
                         break;
                 }

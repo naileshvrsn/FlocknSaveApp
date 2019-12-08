@@ -18,7 +18,12 @@ import com.nailesh.flocknsave.fragment.AboutWhyFragment;
 
 public class SectionPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int[] TAB_TITLES = new int[] {R.string.about_how,R.string.about_what,R.string.about_when,R.string.about_where,R.string.about_who,R.string.about_why};
+    private static final int[] TAB_TITLES = new int[]
+            {R.string.about_how,R.string.about_why,R.string.about_what,R.string.about_when,R.string.about_where,
+                    R.string.about_who};
+    private static final int[] TAB_IMAGES = new int[]
+            {R.drawable.icon_how,R.drawable.icon_why,R.drawable.icon_what,R.drawable.icon_when,
+                    R.drawable.icon_where,R.drawable.icon_who};
 
     private final Context mContext;
 
@@ -36,21 +41,19 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
                 fragment = new AboutHowFragment();
                 break;
             case 1:
-                fragment = new AboutWhatFragment();
+                fragment = new AboutWhyFragment();
                 break;
             case 2:
-                fragment = new AboutWhenFragment();
-
+                fragment = new AboutWhatFragment();
                 break;
             case 3:
-                fragment = new AboutWhereFragment();
-
+                fragment = new AboutWhenFragment();
                 break;
             case 4:
-                fragment = new AboutWhoFragment();
+                fragment = new AboutWhereFragment();
                 break;
             case 5:
-                fragment = new AboutWhyFragment();
+                fragment = new AboutWhoFragment();
                 break;
         }
         return fragment;
