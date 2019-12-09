@@ -31,7 +31,7 @@ public class PersonAdapter extends FirestoreRecyclerAdapter<Person, PersonAdapte
     @NonNull
     @Override
     public PersonHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.supplier_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.person_list_item,parent,false);
 
         return new PersonHolder(view);
     }

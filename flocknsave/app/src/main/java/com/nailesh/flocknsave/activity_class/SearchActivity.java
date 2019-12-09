@@ -3,8 +3,6 @@ package com.nailesh.flocknsave.activity_class;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,11 +10,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +22,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.nailesh.flocknsave.R;
 import com.nailesh.flocknsave.adapter.ProductAdapter;
@@ -164,7 +159,7 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent;
         if(updateProduct){
             if(personType.equals("Admin")){
-                intent = new Intent(this, SupplierListActivity.class)
+                intent = new Intent(this, PersonsListActivity.class)
                         .putExtra("personType",personType);;
             }else{
                 intent = new Intent(this, MainActivity.class);

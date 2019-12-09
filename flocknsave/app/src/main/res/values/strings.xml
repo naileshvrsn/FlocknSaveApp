@@ -59,6 +59,13 @@
         <item>Supplier</item>
     </string-array>
 
+    <string-array name="person_type_admin">
+        <item>Select User Type</item>
+        <item>Admin</item>
+        <item>Buyer</item>
+        <item>Supplier</item>
+    </string-array>
+
 
     <string name="buyer_text_home">You can now quickly and easily amplify your purchasing
         power from multiple suppliers. No ringing around, haggling, emails, searching or

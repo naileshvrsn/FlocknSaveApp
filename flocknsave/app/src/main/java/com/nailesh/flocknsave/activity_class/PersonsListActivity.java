@@ -22,19 +22,22 @@ import com.nailesh.flocknsave.adapter.PersonAdapter;
 import com.nailesh.flocknsave.adapter.ProductAdapter;
 import com.nailesh.flocknsave.model.Person;
 
-public class SupplierListActivity extends AppCompatActivity {
+public class PersonsListActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private CollectionReference personRef;
-    private String personType,supplierid;
+    private String personType,userid;
     private PersonAdapter adapter;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private boolean updatePerson;
+    private Query query;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_supplier_list);
+        setContentView(R.layout.activity_person_list);
 
         setup();
     }
@@ -42,6 +45,7 @@ public class SupplierListActivity extends AppCompatActivity {
     private void setup(){
 
         personType = getIntent().getStringExtra("personType");
+        updatePerson = getIntent().getBooleanExtra("updatePerson",false);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -54,7 +58,12 @@ public class SupplierListActivity extends AppCompatActivity {
 
 
     private void setUpRecyclerView(){
-        Query query = personRef.whereEqualTo("personType","Supplier");
+        if(updatePerson){
+             query = personRef;
+        }else {
+             query = personRef.whereEqualTo("personType","Supplier");
+        }
+
 
         FirestoreRecyclerOptions<Person> options = new FirestoreRecyclerOptions.Builder<Person>()
                 .setQuery(query, Person.class)
@@ -69,20 +78,32 @@ public class SupplierListActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot) {
-                supplierid =  documentSnapshot.getId();
 
-                updateProduct(supplierid);
+                userid =  documentSnapshot.getId();
+                if(updatePerson){
+                    updateUserDetails(userid);
+                }else {
+                    updateProduct(userid);
+                }
             }
         });
     }
 
-    private void updateProduct(String supplierid){
+    private void updateProduct(String userid){
         Intent intent = new Intent(this,SearchActivity.class)
                 .putExtra("personType",personType)
-                .putExtra("supplierId",supplierid)
+                .putExtra("supplierId",userid)
                 .putExtra("updateProduct",true);
         startActivity(intent);
         this.finish();
+    }
+
+    private void updateUserDetails(String userid){
+        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class)
+                .putExtra("personType",personType)
+                .putExtra("userId",userid)
+                .putExtra("updatePerson",updatePerson);
+        startActivity(intent);
     }
 
     @Override
