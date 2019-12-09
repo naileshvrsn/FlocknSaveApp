@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@color/transparentBackground">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/product_image_card"
@@ -37,7 +38,7 @@
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/product_image_card"
             android:hint="Product Name"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/flocknsaveDarkBlue"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -50,9 +51,8 @@
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/product_image_card"
             android:hint="Product Description"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textColor="@color/flocknsaveDarkBlue"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/product_region"
@@ -63,9 +63,8 @@
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/product_image_card"
             android:hint="Product Region"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textColor="@color/flocknsaveDarkBlue"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/product_saving"
@@ -76,9 +75,8 @@
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/product_image_card"
             android:hint="Product Saving"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textColor="@color/flocknsaveGreen"
+            android:textSize="18dp" />
 
 
     </RelativeLayout>

@@ -1,16 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
-    <TextView
+    android:background="@drawable/background"
+    android:padding="12dp"
+    android:paddingBottom="48dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="How It Works"
-        android:layout_marginTop="24dp"
-        android:textSize="36sp"
-        android:gravity="center_horizontal"
-        />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/homeLogo"
+            style="@style/flocknsaveLogo"
+            android:src="@drawable/logo_flocknsave" />
+
+        <TextView
+            style="@style/homeText2"
+            android:text="How it Works"
+            android:layout_marginTop="12dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:src="@drawable/how_it_works_full"/>
+
+
+        <TextView
+            style="@style/howItWorksHeadings"
+            android:text="@string/how_it_h_1" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/how_it_works_1"/>
+        <TextView
+            style="@style/howItWorksText"
+            android:text="@string/how_it_text_1"/>
+
+
+        <TextView
+            style="@style/howItWorksHeadings"
+            android:text="@string/how_it_h_2" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/how_it_works_2"
+                android:layout_alignParentLeft="true"/>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/how_it_works_3"/>
+        </RelativeLayout>
+        <TextView
+            style="@style/howItWorksText"
+            android:text="@string/how_it_text_2"/>
+
+
+        <TextView
+            style="@style/howItWorksHeadings"
+            android:text="@string/how_it_h_3" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/how_it_works_4"
+                android:layout_alignParentLeft="true"/>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/how_it_works_5"/>
+        </RelativeLayout>
+        <TextView
+            style="@style/howItWorksText"
+            android:text="@string/how_it_text_3"/>
+
+
+        <TextView
+            style="@style/howItWorksHeadings"
+            android:text="@string/how_it_h_4" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/how_it_works_6"
+                android:layout_alignParentLeft="true"/>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/how_it_works_7"/>
+        </RelativeLayout>
+        <TextView
+            style="@style/howItWorksText"
+            android:text="@string/how_it_text_4"/>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_class.ProductDetailActivity">
+    tools:context=".activity_class.ProductDetailActivity"
+    android:background="@drawable/background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:elevation="16dp"
-                app:cardBackgroundColor="@color/transparentBackground"
                 android:layout_gravity="center_horizontal">
 
                 <ImageView
@@ -41,8 +41,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Product Name"
                 android:padding="12dp"
-                android:textSize="24sp" />
-
+                android:textSize="24sp"
+                android:textColor="@color/flocknsaveDarkBlue"/>
 
             <TextView
                 android:id="@+id/product_detail_description"
@@ -51,7 +51,8 @@
                 android:layout_marginStart="8dp"
                 android:hint="Product description"
                 android:padding="8dp"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:textColor="@color/flocknsaveDarkBlue"/>
             <TextView
                 android:id="@+id/product_detail_saving"
                 android:layout_width="match_parent"
@@ -59,7 +60,8 @@
                 android:layout_marginStart="8dp"
                 android:hint="Product saving"
                 android:padding="8dp"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:textColor="@color/flocknsaveDarkBlue"/>
         </LinearLayout>
     </ScrollView>
 
@@ -76,11 +78,10 @@
         android:longClickable="true"
         app:textSize="8dp"
         app:textColor="#000000"
-        app:backGroundColor="#ffffff"
+        app:backGroundColor="#80ffffff"
         />
 
     <Button
-
         android:id="@+id/addtocart"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"

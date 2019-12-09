@@ -186,4 +186,43 @@
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/flocknsaveDarkBlue</item>
     </style>
+
+    <!-- How it works styles. -->
+    <style name="howItWorksHeadings">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/flocknsaveDarkBlue</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:background">@drawable/rounded_button_dark</item>
+    </style>
+
+    <style name="howItWorksText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <!-- Category List styles. -->
+    <style name="categoriesText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/flocknsaveDarkBlue</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/rounded_button_dark_transparent</item>
+    </style>
+
+    <style name="categoriesCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
 </resources>

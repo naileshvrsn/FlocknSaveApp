@@ -169,4 +169,40 @@
         Colin Mc Dowell &amp; Peter Stockley
     </string>
 
+    <!-- How it works text -->
+    <string name="how_it_h_1">
+        In a Nutshell
+    </string>
+    <string name="how_it_text_1">
+        FlocknSave®  transforms the way you buy or sell everyday goods &amp; services, making doing business easier, faster and cheaper.
+        Suppliers compete for Buyers combined generic demand, in a live reverse auction environment. The process takes minutes rather than days.
+    </string>
+
+    <string name="how_it_h_2">
+        Search &amp; Save to List
+    </string>
+    <string name="how_it_text_2">
+        Simply compare \'apples with apples\' of generic goods or services in each region.
+
+        Buyers and Suppliers search by product category, region and specification and then add Goods or Services to their \'Favourites List\'.
+        This process simplifies and commoditizes product selection.
+    </string>
+
+    <string name="how_it_h_3">
+        Cart Submission &amp; Bidding
+    </string>
+    <string name="how_it_text_3">
+        Buyers can make up a cart to achieve the most competitive combination of products before submitting to eligible
+        Suppliers who may want to provide a competitive up-front price or save their best price until the Flocktion close.
+    </string>
+
+    <string name="how_it_h_4">
+        Accept/ Decline &amp; Settlement
+    </string>
+    <string name="how_it_text_4">
+        On acceptance of the offer the Buyer and Supplier provide the goods and payment based on the details
+        of the Voucher. The Buyer provides feedback on the successful delivery of the goods or services.
+    </string>
+
+    
 </resources>

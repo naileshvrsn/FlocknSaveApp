@@ -13,4 +13,5 @@
 
     <color name="drawerBackground">#fafeff</color>
     <color name="transparentBackground">#30ffffff</color>
+    <color name="moreTransparentBackground">#05ffffff</color>
 </resources>
