@@ -24,8 +24,7 @@
         </activity>
         <activity android:name=".activity_class.ProductDetailActivity" />
         <activity
-            android:name=".activity_class.SupplierListActivity"
-            android:label="Supplier List" />
+            android:name=".activity_class.PersonsListActivity" />
         <activity
             android:name=".activity_class.SelectCategoryActivity"
             android:label="Category List " />

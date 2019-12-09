@@ -11,16 +11,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nailesh.flocknsave.R;
 import com.nailesh.flocknsave.model.Person;
@@ -38,6 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private LinearLayout _registerLinearLayout;
     private SweetAlertDialog pDialog;
+    private String personType,userId;
+    private boolean updatePerson;
+    private ArrayAdapter<CharSequence> personadapter;
 
 
     @Override
@@ -53,6 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        personType = getIntent().getStringExtra("personType");
+        userId = getIntent().getStringExtra("userId");
+        updatePerson = getIntent().getBooleanExtra("updatePerson",false);
+
+
         //Linear Layout
         _registerLinearLayout = findViewById(R.id.register_linear_layout);
 
@@ -82,9 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
         _industry.setAdapter(industryadapter);
 
         _personType = findViewById(R.id.register_person_type_spinner);
-        ArrayAdapter<CharSequence> personadapter = ArrayAdapter.createFromResource(this,
+        personadapter = ArrayAdapter.createFromResource(this,
                 R.array.person_type, android.R.layout.simple_spinner_item);
-
         personadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _personType.setAdapter(personadapter);
 
@@ -108,9 +121,14 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.setTitleText("Creating Account");
         pDialog.setCancelable(false);
+
+        if(!personType.equals("User")){
+            displayUserInfO(userId);
+        }
+
 
     }
 
@@ -119,7 +137,11 @@ public class RegisterActivity extends AppCompatActivity {
         if (!validate()) {
             return;
         } else {
-            addperson();
+            if(updatePerson){
+                updateUser(userId);
+            }else{
+                addperson();
+            }
         }
 
     }
@@ -205,27 +227,28 @@ public class RegisterActivity extends AppCompatActivity {
             valid = false;
         }
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _email.setError("Enter a valid email address");
-            valid = false;
-        } else {
-            _email.setError(null);
-        }
+        if(personType.equals("User")){
+            if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                _email.setError("Enter a valid email address");
+                valid = false;
+            } else {
+                _email.setError(null);
+            }
 
-        if (password.isEmpty() || password.length() < 6 || password.length() > 10) {
-            _password.setError("between 4 and 10 alphanumeric characters");
-            valid = false;
-        } else {
-            _password.setError(null);
-        }
+            if (password.isEmpty() || password.length() < 6 || password.length() > 10) {
+                _password.setError("between 4 and 10 alphanumeric characters");
+                valid = false;
+            } else {
+                _password.setError(null);
+            }
 
-        if (confirmPassword.isEmpty() || !password.equals(confirmPassword)) {
-            _confirmPassword.setError("Passwords do not match");
-            valid = false;
-        } else {
-            _confirmPassword.setError(null);
+            if (confirmPassword.isEmpty() || !password.equals(confirmPassword)) {
+                _confirmPassword.setError("Passwords do not match");
+                valid = false;
+            } else {
+                _confirmPassword.setError(null);
+            }
         }
-
 
         return valid;
     }
@@ -236,6 +259,7 @@ public class RegisterActivity extends AppCompatActivity {
         this.finish();
     }
 
+    //Add new person
     private void addperson() {
         pDialog.show();
         _registerLinearLayout.getFocusedChild().setEnabled(false);
@@ -305,8 +329,84 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
+    //Display and update Existing User
+
+    private void displayUserInfO(final String userId){
+
+        db.collection("users")
+                .document(userId).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Person  person = documentSnapshot.toObject(Person.class);
+                        _firstName.setText(person.getFirstName());
+                        _lastName.setText(person.getLastName());
+                        _businessName.setText(person.getBusinessName());
+                        _phoneNumber.setText(person.getPhoneNumber());
+                        _streetAddress.setText(person.getStreetAddress());
+                        _suburb.setText(person.getSuburb());
+                        _postCode.setText(person.getPostCode());
+                        _region.setSelection(((ArrayAdapter<String>)_region.getAdapter()).getPosition(person.getRegion()));
+                        _industry.setSelection(((ArrayAdapter<String>)_industry.getAdapter()).getPosition(person.getIndustry()));
+
+
+                        _email.setEnabled(false);
+                        //Only Account can see Email and change password
+                        // Admin can't see other users' emails
+                        if(mAuth.getUid().equals(userId)){
+                            _email.setText(mAuth.getCurrentUser().getEmail());
+                        }else{
+                            _email.setText("Only visible to account owner");
+                            _password.setEnabled(false);
+                            _confirmPassword.setEnabled(false);
+                        }
+                        if(personType.equals("Admin")){
+                            personadapter = ArrayAdapter.createFromResource(getApplicationContext(),
+                                    R.array.person_type_admin, android.R.layout.simple_spinner_item);
+                            personadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            _personType.setAdapter(personadapter);
+                        }else{
+                            _personType.setEnabled(false);
+                        }
+
+                        _personType.setSelection(((ArrayAdapter<String>)_personType.getAdapter()).getPosition(person.getPersonType()));
+
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT);
+            }
+        });
+
+    }
+
+    private void updateUser(String userId){
+        Log.d("UserID____________",userId);
+        Toast.makeText(getApplicationContext(),"Update Started",Toast.LENGTH_SHORT).show();
+    }
+
+    private void toUserList(){
+        Intent intent = new Intent(getApplicationContext(),PersonsListActivity.class)
+                .putExtra("personType",personType)
+                .putExtra("updatePerson",true);
+        startActivity(intent);
+    }
+
+    private void gotoMain(){
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed() {
-        toLogin();
+       if(updatePerson && personType.equals("Admin")){
+          toUserList();
+       }else if(updatePerson && !personType.equals("Admin")){
+           gotoMain();
+       }
+       else{
+           toLogin();
+       }
     }
 }

@@ -2,7 +2,6 @@ package com.nailesh.flocknsave.activity_class;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -220,9 +219,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_admin_update_product:
-                selectSupplier();
+                selectPerson(false);
                 break;
 
+            case R.id.nav_user_list:
+                selectPerson(true);
+                break;
+
+            case R.id.nav_supplier_profile:
+                updatePersonalInfo();
+                break;
+
+            case R.id.nav_customer_profile:
+                updatePersonalInfo();
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -266,10 +276,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.finish();
     }
 
-    private void selectSupplier(){
-        Intent intent = new Intent(this,SupplierListActivity.class)
-                .putExtra("personType",persontype);
+    //Admin has to select user to update user details
+    private void selectPerson(boolean updatePerson){
+        Intent intent = new Intent(this, PersonsListActivity.class)
+                .putExtra("personType",persontype)
+                .putExtra("updatePerson",updatePerson);
         startActivity(intent);
         this.finish();
     }
+
+    //Non-Admin user and only update their info
+    private void updatePersonalInfo(){
+        Intent intent = new Intent(getApplicationContext(),RegisterActivity.class)
+                .putExtra("personType",persontype)
+                .putExtra("userId",mAuth.getUid())
+                .putExtra("updatePerson",true);
+        startActivity(intent);
+    }
+
 }

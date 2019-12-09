@@ -91,7 +91,9 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_menu_register:
-                Intent intent = new Intent(this,RegisterActivity.class);
+                Intent intent = new Intent(this,RegisterActivity.class)
+                        .putExtra("updatePerson",false)
+                        .putExtra("personType","User");
                 startActivity(intent);
                 this.finish();
                 break;
