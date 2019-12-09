@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:weightSum="10">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -13,18 +14,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="34sp"
             android:layout_centerInParent="true"
-            android:text="Select Category"/>
+            android:text="Select Category"
+            android:textSize="34sp" />
     </RelativeLayout>
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
-        android:columnCount="2"
-        android:rowCount="4"
-        android:columnOrderPreserved="false"
         android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
         android:padding="8dp">
 
         <!--Row 1-->
@@ -32,42 +33,45 @@
             android:id="@+id/category_agriculture_contracting"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Agriculture Contracting"
-                android:textSize="16sp"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Agriculture Contracting"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/category_animal_health"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:text="Animal Health"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Animal Health"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -76,42 +80,45 @@
             android:id="@+id/category_construction"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Construction"
-                android:textSize="16sp"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Construction"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/category_dairy_shed_supplies"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:text="Dairy Shed Supplies"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Dairy Shed Supplies"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -120,42 +127,45 @@
             android:id="@+id/category_electricity"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Electricity"
-                android:textSize="16sp"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Electricity"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/category_fencing"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:text="Fencing"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Fencing"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -164,42 +174,45 @@
             android:id="@+id/category_fertiliser"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Fertiliser"
-                android:textSize="16sp"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Fertiliser"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/category_finance"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:text="Finance"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Finance"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
         <!--Row 1-->
@@ -207,42 +220,45 @@
             android:id="@+id/category_fuel"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Fuel, Oils and Lubricants"
-                android:textSize="16sp"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Fuel, Oils and Lubricants"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/category_safety_and_clothing"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:text="Safety and Clothing"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Safety and Clothing"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
         <!--Row 1-->
@@ -250,42 +266,45 @@
             android:id="@+id/category_stockfeed"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Stockfeed"
-                android:textSize="16sp"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Stockfeed"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/category_vehicles"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:text="Vehicles"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Vehicles"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
         <!--Row 1-->
@@ -293,46 +312,46 @@
             android:id="@+id/category_water_and_drainage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp" >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Water and Drainage"
-                android:textSize="16sp"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Water and Drainage"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/category_weed_and_pest"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_marginBottom="16dp"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp"
-            >
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/transparentBackground"
+            app:cardCornerRadius="1dp"
+           >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"
-                android:text="Weed and Pest"
                 android:gravity="center"
-                />
+                android:padding="2dp"
+                android:text="Weed and Pest"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
-        \
-
     </GridLayout>
 
 

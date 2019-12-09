@@ -8,6 +8,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -216,6 +219,41 @@ public class AddProductActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
+    }
+
+    //Toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.header_menu, menu);
+
+        // change toolbar button if user is logged in
+        if (!persontype.equals("User")) {
+            menu.findItem(R.id.nav_menu_login).setVisible(false);
+            menu.findItem(R.id.nav_menu_logout).setVisible(true);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_menu_login:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                this.finish();
+                break;
+            case R.id.nav_menu_logout:
+                mAuth.signOut();
+                Intent logout = new Intent(this, LoginActivity.class);
+                startActivity(logout);
+                this.finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean validate() {

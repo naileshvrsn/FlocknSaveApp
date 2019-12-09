@@ -12,7 +12,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/background</item>
     </style>
+
 
     <!-- Home Page styles. -->
     <style name="flocknsaveLogo">
@@ -129,6 +131,5 @@
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/flocknsaveDarkBlue</item>
     </style>
-
 
 </resources>

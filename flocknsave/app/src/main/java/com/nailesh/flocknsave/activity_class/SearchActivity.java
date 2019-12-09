@@ -60,6 +60,7 @@ public class SearchActivity extends AppCompatActivity {
 
         category = getIntent().getStringExtra("category");
         personType = getIntent().getStringExtra("personType");
+        Log.d("P____________",personType);
 
         if(personType.equals("Admin")){
             supplierId = getIntent().getStringExtra("supplierId");
@@ -132,12 +133,15 @@ public class SearchActivity extends AppCompatActivity {
                           .putExtra("personType",personType)
                           .putExtra("supplierId",supplierId);
                   startActivity(updateproduct);
+                  SearchActivity.this.finish();
               }else{
                   //Toast.makeText(getApplicationContext(),productId.toString(),Toast.LENGTH_SHORT).show();
-                  Intent displayproduct = new Intent(getApplicationContext(), ProductDetailsActivity.class)
+                  Intent displayproduct = new Intent(getApplicationContext(), ProductDetailActivity.class)
                           .putExtra("productId",productId)
-                          .putExtra("personType",personType);
+                          .putExtra("personType",personType)
+                          .putExtra("category",category);
                   startActivity(displayproduct);
+                  SearchActivity.this.finish();
               }
             }
         });
@@ -182,7 +186,7 @@ public class SearchActivity extends AppCompatActivity {
         inflater.inflate(R.menu.header_menu, menu);
 
         // change toolbar button if user is logged in
-        if (personType != null) {
+        if (!personType.equals("User")) {
             menu.findItem(R.id.nav_menu_login).setVisible(false);
             menu.findItem(R.id.nav_menu_logout).setVisible(true);
         }

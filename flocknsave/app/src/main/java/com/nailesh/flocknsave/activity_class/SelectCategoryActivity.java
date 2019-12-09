@@ -154,7 +154,7 @@ public class SelectCategoryActivity extends AppCompatActivity {
         inflater.inflate(R.menu.header_menu, menu);
 
         // change toolbar button if user is logged in
-        if (personType != null) {
+        if (!personType.equals("User")) {
             menu.findItem(R.id.nav_menu_login).setVisible(false);
             menu.findItem(R.id.nav_menu_logout).setVisible(true);
         }

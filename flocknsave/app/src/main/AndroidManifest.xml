@@ -13,9 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_class.ProductDetailsActivity"></activity>
-        <activity android:name=".activity_class.SupplierListActivity" />
-        <activity android:name=".activity_class.SelectCategoryActivity" />
+        <activity android:name=".activity_class.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity_class.ProductDetailActivity" />
+        <activity
+            android:name=".activity_class.SupplierListActivity"
+            android:label="Supplier List" />
+        <activity
+            android:name=".activity_class.SelectCategoryActivity"
+            android:label="Category List " />
         <activity
             android:name=".activity_class.ForgotPasswordActivity"
             android:label="Reset Password" />
@@ -30,11 +43,7 @@
         <activity
             android:name=".activity_class.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

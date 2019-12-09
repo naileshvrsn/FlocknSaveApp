@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.setTitleText("Loading");
 
@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
 
+
+                persontype = "User";
         }
 
         //setup toolbar
