@@ -165,7 +165,7 @@
     </string>
 
     <string name="who_text_3">
-        “Now its your turn... Help us by getting amongst it”.
+        “Now its your turn&#8230; Help us by getting amongst it”.
     </string>
 
     <string name="who_text_4">
@@ -211,5 +211,8 @@
         of the Voucher. The Buyer provides feedback on the successful delivery of the goods or services.
     </string>
 
-    
+    <!-- Customer Account Page Tab Titles -->
+    <string name="account_electricity">Electricity</string>
+    <string name="account_delivery_location">Delivery Location</string>
+
 </resources>

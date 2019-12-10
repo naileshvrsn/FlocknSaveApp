@@ -30,6 +30,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/add_product_title"
             style="@style/homeText3"
             android:text="Add Product"
             android:layout_marginBottom="12dp"/>

@@ -7,20 +7,20 @@
     android:background="@drawable/background">
 
     <ImageView
-        android:id="@+id/about_tab_image"
+        android:id="@+id/account_tab_image"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:padding="36dp" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/about_us_tabs"
+        android:id="@+id/account_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="42sp"
         android:gravity="center_horizontal" />
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/about_us_view_pager"
+        android:id="@+id/account_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparentBackground"

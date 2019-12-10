@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.nailesh.flocknsave.fragment.AccountFragment;
 import com.nailesh.flocknsave.fragment.HomeFragment;
 import com.nailesh.flocknsave.fragment.HowItWorksFragment;
 import com.nailesh.flocknsave.fragment.AboutUsFragment;
@@ -188,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_home);
                 break;
 
             case R.id.nav_how_it_works:
@@ -204,6 +206,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this,SelectCategoryActivity.class).putExtra("personType",persontype);
                 startActivity(intent);
                 this.finish();
+                break;
+
+            case R.id.nav_account:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
                 break;
 
             case R.id.nav_add_product:
@@ -233,6 +239,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_customer_profile:
                 updatePersonalInfo();
                 break;
+
+
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -246,8 +254,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);
         }
-        else if (getFragmentManager().getBackStackEntryCount() > 0) {
-            // show home fragment
+        else if (navigationView.getCheckedItem().getItemId() != R.id.nav_home){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }

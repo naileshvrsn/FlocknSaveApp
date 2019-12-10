@@ -13,9 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_class.SplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+        <activity android:name=".activity_class.AddLocationActivity"></activity>
+        <activity android:name=".activity_class.AddElectricityActivity" />
+        <activity
+            android:name=".activity_class.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,8 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity_class.ProductDetailActivity" />
-        <activity
-            android:name=".activity_class.PersonsListActivity" />
+        <activity android:name=".activity_class.PersonsListActivity" />
         <activity
             android:name=".activity_class.SelectCategoryActivity"
             android:label="Category List " />
@@ -33,7 +34,7 @@
             android:label="Reset Password" />
         <activity
             android:name=".activity_class.RegisterActivity"
-            android:label="Register" />
+            android:label="Update Info" />
         <activity android:name=".activity_class.AddProductActivity" />
         <activity
             android:name=".activity_class.LoginActivity"
@@ -41,9 +42,7 @@
         <activity android:name=".activity_class.SearchActivity" />
         <activity
             android:name=".activity_class.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

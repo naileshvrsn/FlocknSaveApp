@@ -1,0 +1,40 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="36dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <ImageView
+        android:id="@+id/homeLogo"
+        style="@style/flocknsaveLogoLogin"
+        android:layout_height="120dp"
+        android:src="@drawable/logo_flocknsave"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:layout_centerInParent="true">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/LoginFieldsTextLayout">
+            <EditText android:id="@+id/add_electricity_icp"
+                style="@style/LoginFieldsTextStyle"
+                android:inputType="number"
+                android:hint="ICP" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/add_icp_electricity"
+            style="@style/ButtonsStyle"
+            android:padding="12dp"
+            android:textColor="@color/flocknsaveDarkBlue"
+            android:background="@drawable/rounded_button"
+            android:text="Add ICP" />
+    </LinearLayout>
+
+</RelativeLayout>

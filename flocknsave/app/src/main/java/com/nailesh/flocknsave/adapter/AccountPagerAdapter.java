@@ -1,7 +1,6 @@
 package com.nailesh.flocknsave.adapter;
 
 import android.content.Context;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,19 +14,17 @@ import com.nailesh.flocknsave.fragment.AboutWhenFragment;
 import com.nailesh.flocknsave.fragment.AboutWhereFragment;
 import com.nailesh.flocknsave.fragment.AboutWhoFragment;
 import com.nailesh.flocknsave.fragment.AboutWhyFragment;
+import com.nailesh.flocknsave.fragment.AccountElectricityFragment;
+import com.nailesh.flocknsave.fragment.AccountLocationFragment;
 
-public class SectionPagerAdapter extends FragmentPagerAdapter {
+public class AccountPagerAdapter extends FragmentPagerAdapter {
 
     private static final int[] TAB_TITLES = new int[]
-            {R.string.about_how,R.string.about_why,R.string.about_what,R.string.about_when,R.string.about_where,
-                    R.string.about_who};
-    private static final int[] TAB_IMAGES = new int[]
-            {R.drawable.icon_how,R.drawable.icon_why,R.drawable.icon_what,R.drawable.icon_when,
-                    R.drawable.icon_where,R.drawable.icon_who};
+            {R.string.account_electricity,R.string.account_delivery_location};
 
     private final Context mContext;
 
-    public SectionPagerAdapter(Context context, FragmentManager fm) {
+    public AccountPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }
@@ -38,23 +35,12 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                fragment = new AboutHowFragment();
+                fragment = new AccountElectricityFragment();
                 break;
             case 1:
-                fragment = new AboutWhyFragment();
+                fragment = new AccountLocationFragment();
                 break;
-            case 2:
-                fragment = new AboutWhatFragment();
-                break;
-            case 3:
-                fragment = new AboutWhenFragment();
-                break;
-            case 4:
-                fragment = new AboutWhereFragment();
-                break;
-            case 5:
-                fragment = new AboutWhoFragment();
-                break;
+
         }
         return fragment;
     }

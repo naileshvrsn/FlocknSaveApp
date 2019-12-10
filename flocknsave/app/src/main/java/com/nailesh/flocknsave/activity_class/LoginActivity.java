@@ -138,7 +138,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signinUser(){
-
         login_password.setEnabled(false);
         String email = login_email.getText().toString();
         final String password = login_password.getText().toString();
@@ -157,7 +156,6 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     pDialog.dismissWithAnimation();
                 }
-
             }
         });
     }

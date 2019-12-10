@@ -18,7 +18,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         EasySplashScreen config = new EasySplashScreen(SplashScreenActivity.this)
                 .withFullScreen()
                 .withTargetActivity(MainActivity.class)
-                .withSplashTimeOut(1000)
+                .withSplashTimeOut(2000)
                 .withFooterText("Copyright 2019")
                 .withBackgroundResource(R.drawable.background)
                 .withLogo(R.drawable.logo_flocknsave);

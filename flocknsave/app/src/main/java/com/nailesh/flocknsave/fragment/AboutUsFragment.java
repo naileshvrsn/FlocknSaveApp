@@ -13,7 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.nailesh.flocknsave.R;
-import com.nailesh.flocknsave.adapter.SectionPagerAdapter;
+import com.nailesh.flocknsave.adapter.AboutUsPagerAdapter;
 
 public class AboutUsFragment extends Fragment {
 
@@ -32,10 +32,10 @@ public class AboutUsFragment extends Fragment {
         about_image.setImageResource(R.drawable.icon_how);
 
 
-        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(getContext(), getFragmentManager());
-        ViewPager viewPager = view.findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionPagerAdapter);
-        TabLayout tabs = view.findViewById(R.id.tabs);
+        AboutUsPagerAdapter aboutUsPagerAdapter = new AboutUsPagerAdapter(getContext(), getFragmentManager());
+        ViewPager viewPager = view.findViewById(R.id.about_us_view_pager);
+        viewPager.setAdapter(aboutUsPagerAdapter);
+        TabLayout tabs = view.findViewById(R.id.about_us_tabs);
         tabs.setupWithViewPager(viewPager);
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -85,4 +85,6 @@ public class AboutUsFragment extends Fragment {
             }
         });
     }
+
+
 }

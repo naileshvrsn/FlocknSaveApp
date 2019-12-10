@@ -51,7 +51,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class AddProductActivity extends AppCompatActivity {
 
-    private TextView name, description, unit, saving;
+    private TextView name, description, unit, saving,title;
     private Spinner region, supplier, category;
     private Button addProduct;
     private ImageView addImage;
@@ -89,6 +89,7 @@ public class AddProductActivity extends AppCompatActivity {
 
         storageLocation = "gs://flocknsave-62b20.appspot.com/productImages/";
 
+        title = findViewById(R.id.add_product_title);
         name = findViewById(R.id.add_product_name);
         description = findViewById(R.id.add_product_description);
         unit = findViewById(R.id.add_product_unit);
@@ -122,6 +123,8 @@ public class AddProductActivity extends AppCompatActivity {
 
         // display product information if updating product
         if(updateProduct){
+
+            title.setText("Update Product");
 
             pDialog.setTitle("Retrieving Product");
             pDialog.show();

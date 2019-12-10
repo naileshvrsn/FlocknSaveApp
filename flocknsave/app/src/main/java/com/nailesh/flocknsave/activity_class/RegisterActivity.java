@@ -1,8 +1,10 @@
 package com.nailesh.flocknsave.activity_class;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +30,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.nailesh.flocknsave.R;
 import com.nailesh.flocknsave.model.Person;
 
+import java.util.HashMap;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -43,7 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private LinearLayout _registerLinearLayout;
     private SweetAlertDialog pDialog;
-    private String personType,userId;
+    private AlertDialog.Builder dlgAlert;
+    private String personType, userId;
     private boolean updatePerson;
     private ArrayAdapter<CharSequence> personadapter;
 
@@ -64,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         personType = getIntent().getStringExtra("personType");
         userId = getIntent().getStringExtra("userId");
-        updatePerson = getIntent().getBooleanExtra("updatePerson",false);
+        updatePerson = getIntent().getBooleanExtra("updatePerson", false);
 
 
         //Linear Layout
@@ -110,7 +113,11 @@ public class RegisterActivity extends AppCompatActivity {
         _signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                if (updatePerson) {
+                    update();
+                } else {
+                    register();
+                }
             }
         });
 
@@ -125,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.setCancelable(false);
 
-        if(!personType.equals("User")){
+        if (!personType.equals("User")) {
             displayUserInfO(userId);
         }
 
@@ -137,11 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (!validate()) {
             return;
         } else {
-            if(updatePerson){
-                updateUser(userId);
-            }else{
-                addperson();
-            }
+            addperson();
         }
 
     }
@@ -226,29 +229,27 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(RegisterActivity.this, "Select User Type", Toast.LENGTH_LONG).show();
             valid = false;
         }
-
-        if(personType.equals("User")){
-            if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                _email.setError("Enter a valid email address");
-                valid = false;
-            } else {
-                _email.setError(null);
-            }
-
-            if (password.isEmpty() || password.length() < 6 || password.length() > 10) {
-                _password.setError("between 4 and 10 alphanumeric characters");
-                valid = false;
-            } else {
-                _password.setError(null);
-            }
-
-            if (confirmPassword.isEmpty() || !password.equals(confirmPassword)) {
-                _confirmPassword.setError("Passwords do not match");
-                valid = false;
-            } else {
-                _confirmPassword.setError(null);
-            }
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            _email.setError("Enter a valid email address");
+            valid = false;
+        } else {
+            _email.setError(null);
         }
+
+        if (password.isEmpty() || password.length() < 6 || password.length() > 10) {
+            _password.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            _password.setError(null);
+        }
+
+        if (confirmPassword.isEmpty() || !password.equals(confirmPassword)) {
+            _confirmPassword.setError("Passwords do not match");
+            valid = false;
+        } else {
+            _confirmPassword.setError(null);
+        }
+
 
         return valid;
     }
@@ -331,14 +332,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     //Display and update Existing User
 
-    private void displayUserInfO(final String userId){
+    private void displayUserInfO(final String userId) {
+
+        _linkLogin.setVisibility(View.GONE);
 
         db.collection("users")
                 .document(userId).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Person  person = documentSnapshot.toObject(Person.class);
+                        Person person = documentSnapshot.toObject(Person.class);
                         _firstName.setText(person.getFirstName());
                         _lastName.setText(person.getLastName());
                         _businessName.setText(person.getBusinessName());
@@ -346,67 +349,258 @@ public class RegisterActivity extends AppCompatActivity {
                         _streetAddress.setText(person.getStreetAddress());
                         _suburb.setText(person.getSuburb());
                         _postCode.setText(person.getPostCode());
-                        _region.setSelection(((ArrayAdapter<String>)_region.getAdapter()).getPosition(person.getRegion()));
-                        _industry.setSelection(((ArrayAdapter<String>)_industry.getAdapter()).getPosition(person.getIndustry()));
+                        _region.setSelection(((ArrayAdapter<String>) _region.getAdapter()).getPosition(person.getRegion()));
+                        _industry.setSelection(((ArrayAdapter<String>) _industry.getAdapter()).getPosition(person.getIndustry()));
 
 
                         _email.setEnabled(false);
                         //Only Account can see Email and change password
                         // Admin can't see other users' emails
-                        if(mAuth.getUid().equals(userId)){
+                        if (mAuth.getUid().equals(userId)) {
                             _email.setText(mAuth.getCurrentUser().getEmail());
-                        }else{
+                        } else {
                             _email.setText("Only visible to account owner");
                             _password.setEnabled(false);
                             _confirmPassword.setEnabled(false);
                         }
-                        if(personType.equals("Admin")){
+                        if (personType.equals("Admin")) {
                             personadapter = ArrayAdapter.createFromResource(getApplicationContext(),
                                     R.array.person_type_admin, android.R.layout.simple_spinner_item);
                             personadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             _personType.setAdapter(personadapter);
-                        }else{
+                        } else {
                             _personType.setEnabled(false);
                         }
 
-                        _personType.setSelection(((ArrayAdapter<String>)_personType.getAdapter()).getPosition(person.getPersonType()));
+                        _personType.setSelection(((ArrayAdapter<String>) _personType.getAdapter()).getPosition(person.getPersonType()));
 
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
             }
         });
 
     }
 
-    private void updateUser(String userId){
-        Log.d("UserID____________",userId);
-        Toast.makeText(getApplicationContext(),"Update Started",Toast.LENGTH_SHORT).show();
+    private void update() {
+        if (!validUpdate()) {
+            return;
+        } else {
+            updateUser(userId);
+        }
     }
 
-    private void toUserList(){
-        Intent intent = new Intent(getApplicationContext(),PersonsListActivity.class)
-                .putExtra("personType",personType)
-                .putExtra("updatePerson",true);
-        startActivity(intent);
+    private boolean validUpdate() {
+        boolean valid = true;
+        String firstName = _firstName.getText().toString();
+        String lastName = _lastName.getText().toString();
+        String businessName = _businessName.getText().toString();
+        String phoneNumber = _phoneNumber.getText().toString();
+        String streetAddress = _streetAddress.getText().toString();
+        String suburb = _suburb.getText().toString();
+        String postCode = _postCode.getText().toString();
+        String region = _region.getSelectedItem().toString();
+        String industry = _industry.getSelectedItem().toString();
+        String personType = _personType.getSelectedItem().toString();
+        String password = _password.getText().toString().trim();
+        String confirmPassword = _confirmPassword.getText().toString().trim();
+
+
+        if (firstName.isEmpty() || firstName.length() < 2) {
+            _firstName.setError("at least 2 characters");
+            valid = false;
+        } else {
+            _firstName.setError(null);
+        }
+
+        if (lastName.isEmpty() || lastName.length() < 2) {
+            _lastName.setError("at least 2 characters");
+            valid = false;
+        } else {
+            _lastName.setError(null);
+        }
+
+        if (businessName.isEmpty() || businessName.length() < 2) {
+            _businessName.setError("at least 10 characters");
+            valid = false;
+        } else {
+            _businessName.setError(null);
+        }
+
+        if (phoneNumber.isEmpty() || phoneNumber.length() < 8 || phoneNumber.length() > 12) {
+            _phoneNumber.setError("Enter a valid phone number");
+            valid = false;
+        } else {
+            _phoneNumber.setError(null);
+        }
+
+        if (streetAddress.isEmpty() || streetAddress.length() < 2) {
+            _streetAddress.setError("at least 5 characters");
+            valid = false;
+        } else {
+            _streetAddress.setError(null);
+        }
+
+        if (suburb.isEmpty() || suburb.length() < 2) {
+            _suburb.setError("at least 4 characters");
+            valid = false;
+        } else {
+            _suburb.setError(null);
+        }
+
+        if (postCode.isEmpty() || postCode.length() != 4) {
+            _postCode.setError("Enter a valid postcode");
+            valid = false;
+        } else {
+            _postCode.setError(null);
+        }
+
+        if (region.equals("Select Region")) {
+            Toast.makeText(RegisterActivity.this, "Select Region", Toast.LENGTH_LONG).show();
+            valid = false;
+        }
+
+        if (industry.equals("Select Industry")) {
+            Toast.makeText(RegisterActivity.this, "Select Industry", Toast.LENGTH_LONG).show();
+            valid = false;
+        }
+
+        if (personType.equals("Select User Type")) {
+            Toast.makeText(RegisterActivity.this, "Select User Type", Toast.LENGTH_LONG).show();
+            valid = false;
+        }
+
+        if(!password.isEmpty()){
+            if (password.length() > 8) {
+                _password.setError("between 4 and 10 alphanumeric characters");
+                valid = false;
+            } else {
+                _password.setError(null);
+            }
+
+            if (!password.equals(confirmPassword)) {
+                _confirmPassword.setError("Passwords do not match");
+                valid = false;
+            } else {
+                _confirmPassword.setError(null);
+            }
+        }
+
+        return valid;
     }
 
-    private void gotoMain(){
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(intent);
+    private void updateUser(String userId) {
+        pDialog.setTitle("Update User Info");
+        pDialog.show();
+
+        String firstName = _firstName.getText().toString();
+        String lastName = _lastName.getText().toString();
+        String businessName = _businessName.getText().toString();
+        String phoneNumber = _phoneNumber.getText().toString();
+        String streetAddress = _streetAddress.getText().toString();
+        String suburb = _suburb.getText().toString();
+        String postCode = _postCode.getText().toString();
+        String region = _region.getSelectedItem().toString();
+        String industry = _industry.getSelectedItem().toString();
+        String personType = _personType.getSelectedItem().toString();
+        final String password = _password.getText().toString().trim();
+
+
+
+        //update the password
+        if(!password.isEmpty()){
+           FirebaseUser currentUser = mAuth.getCurrentUser();
+
+           currentUser.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
+               @Override
+               public void onComplete(@NonNull Task<Void> task) {
+                   if(task.isSuccessful()){
+                       Toast.makeText(getApplicationContext(), "Password updated successfully", Toast.LENGTH_SHORT).show();
+                   }else {
+                       Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                   }
+               }
+           });
+
+        }
+
+        //update user Details
+
+        //Hashmap for user info
+        HashMap<String,Object> data = new HashMap<>();
+
+        data.put("firstName",firstName);
+        data.put("lastName",lastName);
+        data.put("businessName",businessName);
+        data.put("phoneNumber",phoneNumber);
+        data.put("streetAddress",streetAddress);
+        data.put("suburb",suburb);
+        data.put("postCode",postCode);
+        data.put("region",region);
+        data.put("industry",industry);
+        data.put("personType",personType);
+
+        //update user
+        db.collection("users")
+                .document(userId)
+                .update(data)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            pDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "User Info Update", Toast.LENGTH_SHORT).show();
+                            dlgAlert = new AlertDialog.Builder(RegisterActivity.this);
+                            dlgAlert.setTitle("Success!");
+                            dlgAlert.setMessage("User Info Update Successfully!");
+                            dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    onBackPressed();
+                                }
+                            });
+                            dlgAlert.setCancelable(false);
+                            dlgAlert.create().show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Failed to save changes", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
     }
+
+    private void toUserList() {
+        Intent intent = new Intent(getApplicationContext(), PersonsListActivity.class)
+                .putExtra("personType", personType)
+                .putExtra("updatePerson", true);
+        startActivity(intent);
+        this.finish();
+    }
+
+    private void gotoMain() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+
     @Override
     public void onBackPressed() {
-       if(updatePerson && personType.equals("Admin")){
-          toUserList();
-       }else if(updatePerson && !personType.equals("Admin")){
-           gotoMain();
-       }
-       else{
-           toLogin();
-       }
+        if (updatePerson && personType.equals("Admin")) {
+            toUserList();
+        } else if (updatePerson && !personType.equals("Admin")) {
+            gotoMain();
+        } else {
+            toLogin();
+        }
     }
+
 }
