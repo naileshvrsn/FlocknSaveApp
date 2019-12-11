@@ -29,10 +29,10 @@
         android:id="@+id/nav_customer"
         android:checkableBehavior="single"
         android:visible="false">
-        <item
-            android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_dashboard"
-            android:title="My Dashboard" />
+<!--        <item-->
+<!--            android:id="@+id/nav_dashboard"-->
+<!--            android:icon="@drawable/ic_dashboard"-->
+<!--            android:title="My Dashboard" />-->
         <item
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_account"
@@ -56,10 +56,10 @@
             android:id="@+id/nav_update_product"
             android:icon="@drawable/ic_update"
             android:title="Update Product" />
-        <item
-            android:id="@+id/nav_supplier_orders"
-            android:icon="@drawable/ic_order_list"
-            android:title="Orders" />
+<!--        <item-->
+<!--            android:id="@+id/nav_supplier_orders"-->
+<!--            android:icon="@drawable/ic_order_list"-->
+<!--            android:title="Orders" />-->
 
         <item android:id="@+id/nav_supplier_profile"
             android:icon="@drawable/ic_portrait_info"
@@ -78,11 +78,10 @@
             android:id="@+id/nav_admin_update_product"
             android:icon="@drawable/ic_update"
             android:title="Update Product" />
-        <item
-            android:id="@+id/nav_order_list"
-            android:icon="@drawable/ic_order_list"
-            android:title="View Orders" />
-
+<!--        <item-->
+<!--            android:id="@+id/nav_order_list"-->
+<!--            android:icon="@drawable/ic_order_list"-->
+<!--            android:title="View Orders" />-->
         <item android:id="@+id/nav_user_list"
             android:icon="@drawable/ic_user_list"
             android:title="User List" />

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.nailesh.flocknsave.R;
@@ -43,10 +44,15 @@ public class AccountElectricityFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account_electricity,container,false);
-
         setup(view);
-
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setupRecyclerView(view);
     }
 
     private void setup(View view) {
@@ -60,12 +66,11 @@ public class AccountElectricityFragment extends Fragment {
         addICP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), AddElectricityActivity.class);
+                Intent intent = new Intent(getContext(), AddElectricityActivity.class)
+                        .putExtra("idpID","null");
                 startActivity(intent);
             }
         });
-
-        setupRecyclerView(view);
     }
 
     private void setupRecyclerView(View view){
@@ -81,6 +86,15 @@ public class AccountElectricityFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnItemClickListener(new ElectricityAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot) {
+                String icpid = documentSnapshot.getId();
+                Intent intent = new Intent(getContext(), AddElectricityActivity.class)
+                        .putExtra("idpID",icpid);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

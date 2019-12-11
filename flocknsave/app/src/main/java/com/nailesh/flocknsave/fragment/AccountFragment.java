@@ -32,8 +32,8 @@ public class AccountFragment extends Fragment {
         account_image = view.findViewById(R.id.account_tab_image);
         account_image.setImageResource(R.drawable.icon_electricity_account);
 
-        AccountPagerAdapter accountPagerAdapter = new AccountPagerAdapter(getContext(), getFragmentManager());
-        ViewPager viewPager = view.findViewById(R.id.account_view_pager);
+        final AccountPagerAdapter accountPagerAdapter = new AccountPagerAdapter(getContext(), getFragmentManager());
+        final ViewPager viewPager = view.findViewById(R.id.account_view_pager);
         viewPager.setAdapter(accountPagerAdapter);
         TabLayout tabs = view.findViewById(R.id.account_tabs);
         tabs.setupWithViewPager(viewPager);

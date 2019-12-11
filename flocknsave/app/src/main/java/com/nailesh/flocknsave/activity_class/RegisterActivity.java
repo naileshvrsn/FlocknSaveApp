@@ -208,7 +208,7 @@ public class RegisterActivity extends AppCompatActivity {
             _suburb.setError(null);
         }
 
-        if (postCode.isEmpty() || postCode.length() != 4) {
+        if (postCode.length() != 4) {
             _postCode.setError("Enter a valid postcode");
             valid = false;
         } else {

@@ -2,7 +2,7 @@ package com.nailesh.flocknsave.model;
 
 public class Electricity {
 
-    String icp;
+    private String icp;
 
     public Electricity() {
     }

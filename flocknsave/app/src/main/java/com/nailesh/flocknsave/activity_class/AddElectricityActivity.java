@@ -14,9 +14,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nailesh.flocknsave.R;
 import com.nailesh.flocknsave.model.Electricity;
+
+import java.util.HashMap;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -27,8 +30,10 @@ public class AddElectricityActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private CollectionReference docRef;
+    private CollectionReference icpList;
+
     private SweetAlertDialog pDialog;
+    private String icpID;
 
 
 
@@ -41,15 +46,24 @@ public class AddElectricityActivity extends AppCompatActivity {
 
     private void setup(){
 
+        icpID = getIntent().getStringExtra("idpID");
+
         icp = findViewById(R.id.add_electricity_icp);
         addICP = findViewById(R.id.add_icp_electricity);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        icpList = db.collection("users").document(mAuth.getUid()).collection("electric_icp");
 
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.setCancelable(false);
-        pDialog.setTitle("Adding ICP");
+
+        if(!icpID.equals("null")){
+            displayICP();
+            pDialog.setTitle("Updating ICP");
+        }else{
+            pDialog.setTitle("Adding ICP");
+        }
 
 
         addICP.setOnClickListener(new View.OnClickListener() {
@@ -61,22 +75,25 @@ public class AddElectricityActivity extends AppCompatActivity {
                     icp.setError("Please enter valid ICP");
                 }else{
                     icp.setError(null);
-                    addUserICP();
+                    if(!icpID.equals("null")){
+                        updateUserIDP();
+                    }else {
+                        addUserICP();
+                    }
                 }
             }
         });
+
     }
 
     private void addUserICP(){
         pDialog.show();
         String eICP = icp.getText().toString();
 
-        docRef = db.collection("users").document(mAuth.getUid()).collection("electric_icp");
-
         Electricity electricityicp = new Electricity();
         electricityicp.setIcp(eICP);
 
-        docRef.add(electricityicp).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        icpList.add(electricityicp).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
                 if(task.isSuccessful()){
@@ -94,9 +111,47 @@ public class AddElectricityActivity extends AppCompatActivity {
 
     }
 
+    private void displayICP(){
+
+        icpList.document(icpID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    Electricity electricity = task.getResult().toObject(Electricity.class);
+                    icp.setText(electricity.getIcp());
+                }
+            }
+        });
+    }
+
+    private void updateUserIDP(){
+        pDialog.show();
+        String eICP = icp.getText().toString();
+
+
+        HashMap<String,Object> data = new HashMap<>();
+        data.put("icp",eICP);
+
+        icpList.document(icpID).update(data)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"ICP Updated",Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                        }else{
+                            pDialog.dismiss();
+                            Toast.makeText(getApplicationContext(),"ICP not Update",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+    }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        this.finish();
     }
 }
